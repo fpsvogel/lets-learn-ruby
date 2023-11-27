@@ -1,0 +1,22 @@
+{
+  "name": "letslearnruby",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "esbuild": "node esbuild.config.js --minify",
+    "esbuild-dev": "node esbuild.config.js --watch"
+  },
+  "devDependencies": {
+    "cssnano": "^6.0.1",
+    "esbuild": "^0.17.19",
+    "glob": "^10.2.6",
+    "postcss": "^8.4.23",
+    "postcss-color-mod-function": "^3.0.3",
+    "postcss-flexbugs-fixes": "^5.0.2",
+    "postcss-import": "^15.1.0",
+    "postcss-load-config": "^4.0.1",
+    "postcss-mixins": "^9.0.4",
+    "postcss-preset-env": "^8.4.1",
+    "read-cache": "^1.0.0"
+  }
+}
