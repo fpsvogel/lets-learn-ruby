@@ -44,3 +44,5 @@ group :test, optional: true do
   gem "shoulda"
   gem "rails-dom-testing"
 end
+
+gem "bridgetown-seo-tag", "~> 6.0"
