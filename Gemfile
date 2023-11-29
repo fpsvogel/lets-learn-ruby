@@ -46,3 +46,4 @@ group :test, optional: true do
 end
 
 gem "bridgetown-seo-tag", "~> 6.0"
+gem "debug"
