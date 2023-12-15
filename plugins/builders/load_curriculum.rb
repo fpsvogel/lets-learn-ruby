@@ -1,5 +1,3 @@
-require 'debug'
-
 class Builders::LoadCurriculum < SiteBuilder
   def build
     hook :site, :post_read do |site|

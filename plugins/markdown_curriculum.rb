@@ -8,54 +8,50 @@ class MarkdownCurriculum
 
   # Parses the Markdown curriculum into groups of item hashes.
   # @return [Array<Hash>] nested item groups containing item hashes.
-  #   For example, here's a snipped from a Markdown curriculum:
-  #     ```markdown
-  #     ## Basics
-  #
-  #     ### Ruby basics
-  #
-  #     - **Intro:**
-  #       - [x] [The Odin Project - Ruby](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby) <!-- https://avatars.githubusercontent.com/u/4441966?s=280 -->
-  #       - [x] [GoRails - Ruby for Beginners](https://gorails.com/series/ruby-for-beginners) if you prefer videos.
-  #       - [ ] [BigBinary Academy](https://academy.bigbinary.com/learn-ruby)
-  #     ```
-  #
-  #   From the above Markdown, this data is parsed:
-  #     ```ruby
-  #     [
-  #       {
-  #         "Basics" =>
-  #           [
-  #             {
-  #               "Ruby basics" =>
-  #                 [
-  #                   {
-  #                     "Intro" =>
-  #                       [
-  #                         {
-  #                           title: "The Odin Project - Ruby",
-  #                           description: nil,
-  #                           url: "https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby",
-  #                           image: "https://avatars.githubusercontent.com/u/4441966?s=280",
-  #                         },
-  #                         {
-  #                           title: "GoRails - Ruby for Beginners",
-  #                           description: "If you prefer videos.",
-  #                           url: "https://gorails.com/series/ruby-for-beginners",
-  #                           image: nil,
-  #                         },
-  #                       ],
-  #                   },
-  #                 ],
-  #             },
-  #           ],
-  #       },
-  #     ]
-  #    ```
+  #   See test_markdown_curriculum.rb for examples.
   def parse
     markdown_string
-      .split("## ")
-      .reject(&:blank?)
+      # Get sections (h2).
+      .split("\n## ")
+      .map { |h2_and_content|
+        h2_and_content.split("\n", 2)
+      }
+      # Split out the title and top content.
+      .then {
+        title, intro = _1.shift
+        title = title&.delete_prefix("# ")&.strip&.presence
+        intro = intro&.strip&.presence
+
+        {
+          title:,
+          intro:,
+          content: _1,
+        }
+      }
+      .tap { |hash|
+        hash[:content] = hash[:content]
+          # For empty sections, add nil to form a 2-element (#to_h-able) array.
+          .map { |array|
+            (2 - array.length).times.inject(array) { |array, i| array << nil }
+          }
+          .to_h
+          .transform_keys(&:strip)
+          .transform_values { _1&.strip&.presence }
+          # TODO clean up below
+          # .reject { |k, v| k.downcase == "table of contents" }
+          # # Get subsections (h3).
+          # .transform_values.with_index { |content_under_h2, i|
+          #   next content_under_h2 if i.zero? || !content_under_h2&.include?("\n\n### ")
+
+          #   content_under_h2
+          #     .split("\n\n### ")
+          #     .reject(&:blank?)
+          #     .map { |h3_and_content|
+          #       h3_and_content.split(/(?=\n\n)/, 2)
+          #     }
+          #     .to_h
+          # }
+      }
   end
 
   private
