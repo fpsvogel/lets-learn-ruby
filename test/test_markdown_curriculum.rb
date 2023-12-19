@@ -3,20 +3,24 @@ require_relative "./helper"
 class TestMarkdownCurriculum < Minitest::Test
   def self.title = "My Ruby road map"
 
-  @cases = {
+  # DSL for defining data for a test case.
+  def self.example(description, markdown:, parsed:)
+    @cases ||= []
+    @cases << [description, markdown, parsed]
+  end
 
-  "blank file" => [
-    "\n",
-    { title: nil, intro: nil, content: {} },
-  ],
+  # Data for test cases.
 
-  "title" => [
-    "# #{title}\n",
-    { title:, intro: nil, content: {} },
-  ],
+  example "blank file",
+    markdown: "\n",
+    parsed: { title: nil, intro: nil, content: {} }
 
-  "title and empty sections" => [
-    <<~MARKDOWN,
+  example "title",
+    markdown: "# #{title}\n",
+    parsed: { title:, intro: nil, content: {} }
+
+  example "title and empty sections",
+    markdown: <<~MD,
       # #{title}
 
       ## Intro
@@ -24,30 +28,27 @@ class TestMarkdownCurriculum < Minitest::Test
 
       ## Basics
 
-    MARKDOWN
-    {
+    MD
+    parsed: {
       title:,
       intro: nil,
       content: { "Intro" => nil, "Basics" => nil },
-    },
-  ],
+    }
 
-  "title and empty sections with minimal line breaks" => [
-    <<~MARKDOWN,
+  example "title and empty sections with minimal line breaks",
+    markdown: <<~MD,
       # #{title}
       ## Intro
       ## Basics
-    MARKDOWN
-    {
+    MD
+    parsed: {
       title:,
       intro: nil,
       content: { "Intro" => nil, "Basics" => nil },
-    },
-  ],
+    }
 
-  }
-
-  @cases.each do |description, (markdown, expected)|
+  # Test cases generated from the data above.
+  @cases.each do |description, markdown, expected|
     define_method "test_#{description.tr(" ", "_")}" do
       actual = MarkdownCurriculum.new(markdown).parse
       assert_equal expected, actual
@@ -55,7 +56,7 @@ class TestMarkdownCurriculum < Minitest::Test
   end
 
   # TODO
-  # <<~MARKDOWN
+  # <<~MD
   #   # My Ruby road map
 
   #   Hi, this is my road map.
@@ -86,7 +87,7 @@ class TestMarkdownCurriculum < Minitest::Test
   #   ### The meaning of life
 
   #   - [ ] something else
-  # MARKDOWN
+  # MD
 
   # expected = [
   #   {
