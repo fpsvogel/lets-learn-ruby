@@ -13,6 +13,7 @@ class MarkdownCurriculum
   #   See test_markdown_curriculum.rb for examples.
   def parse
     markdown_string
+      .gsub("<!-- omit in toc -->", "")
       # Get sections (h2).
       .split("\n## ")
       .map { |h2_and_content|

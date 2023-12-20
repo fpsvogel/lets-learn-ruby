@@ -24,7 +24,7 @@ class TestMarkdownCurriculum < Minitest::Test
     markdown: "# #{title}\n",
     parsed: { title:, intro: nil, content: {} }
 
-  example "title and empty sections",
+  example "empty sections",
     markdown: <<~MD,
       # #{title}
 
@@ -40,7 +40,7 @@ class TestMarkdownCurriculum < Minitest::Test
       content: { "Intro" => nil, "Basics" => nil },
     }
 
-  example "title and empty sections with minimal line breaks",
+  example "empty sections with minimal line breaks",
     markdown: <<~MD,
       # #{title}
       ## Intro
@@ -48,7 +48,17 @@ class TestMarkdownCurriculum < Minitest::Test
     MD
     parsed: prev_parsed
 
-  example "title and empty subsections",
+  example "table of contents",
+    markdown: <<~MD,
+      # #{title}
+      ## Table of contents
+      ## Intro
+      <!-- omit in toc -->
+      ## Basics
+    MD
+    parsed: prev_parsed
+
+  example "empty subsections",
     markdown: <<~MD,
       # #{title}
 
@@ -74,7 +84,7 @@ class TestMarkdownCurriculum < Minitest::Test
       },
     }
 
-  example "title and empty subsections with minimal line breaks",
+  example "empty subsections with minimal line breaks",
     markdown: <<~MD,
       # #{title}
       ## Advanced
