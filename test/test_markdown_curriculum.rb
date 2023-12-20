@@ -9,6 +9,11 @@ class TestMarkdownCurriculum < Minitest::Test
     @cases << [description, markdown, parsed]
   end
 
+  # Shortcut for the :parsed value in the previous ::example data.
+  def self.prev_parsed
+    @cases.last.last
+  end
+
   # Data for test cases.
 
   example "blank file",
@@ -41,11 +46,43 @@ class TestMarkdownCurriculum < Minitest::Test
       ## Intro
       ## Basics
     MD
+    parsed: prev_parsed
+
+  example "title and empty subsections",
+    markdown: <<~MD,
+      # #{title}
+
+      ## Advanced
+
+
+      ### Quantum computing
+
+
+      ### The meaning of life
+
+      ## Galaxy brain
+    MD
     parsed: {
       title:,
       intro: nil,
-      content: { "Intro" => nil, "Basics" => nil },
+      content: {
+        "Advanced" => {
+          "Quantum computing" => nil,
+          "The meaning of life" => nil,
+        },
+        "Galaxy brain" => nil,
+      },
     }
+
+  example "title and empty subsections with minimal line breaks",
+    markdown: <<~MD,
+      # #{title}
+      ## Advanced
+      ### Quantum computing
+      ### The meaning of life
+      ## Galaxy brain
+    MD
+    parsed: prev_parsed
 
   # Test cases generated from the data above.
   @cases.each do |description, markdown, expected|

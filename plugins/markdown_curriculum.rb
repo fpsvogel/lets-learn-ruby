@@ -1,3 +1,5 @@
+require 'debug'
+
 class MarkdownCurriculum
   private attr_reader :markdown_string, :config
 
@@ -37,20 +39,23 @@ class MarkdownCurriculum
           .to_h
           .transform_keys(&:strip)
           .transform_values { _1&.strip&.presence }
-          # TODO clean up below
-          # .reject { |k, v| k.downcase == "table of contents" }
-          # # Get subsections (h3).
-          # .transform_values.with_index { |content_under_h2, i|
-          #   next content_under_h2 if i.zero? || !content_under_h2&.include?("\n\n### ")
+          .reject { |k, v| k.downcase == "table of contents" }
+          # Get subsections (h3).
+          .transform_values.with_index { |content_under_h2, i|
+            next content_under_h2 unless content_under_h2&.include?("\n### ")
 
-          #   content_under_h2
-          #     .split("\n\n### ")
-          #     .reject(&:blank?)
-          #     .map { |h3_and_content|
-          #       h3_and_content.split(/(?=\n\n)/, 2)
-          #     }
-          #     .to_h
-          # }
+            content_under_h2
+              .split(/\n### /)
+              .map { |h3_and_content|
+                h3_and_content.delete_prefix("### ").split("\n", 2)
+              }
+              # For empty subsections, add nil to form a 2-element (#to_h-able) array.
+              .map { |array|
+                (2 - array.length).times.inject(array) { |array, i| array << nil }
+              }
+              .to_h
+              .transform_values { _1&.strip&.presence }
+          }
       }
   end
 
