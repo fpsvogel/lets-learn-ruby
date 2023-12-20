@@ -94,6 +94,55 @@ class TestMarkdownCurriculum < Minitest::Test
     MD
     parsed: prev_parsed
 
+  example "content under sections",
+    markdown: <<~MD,
+      # #{title}
+      ## Basics
+
+      - [x] [The Odin Project - Ruby](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby) <!-- https://example.com/top.png -->
+      - [x] [GoRails - Ruby for Beginners](https://gorails.com/series/ruby-for-beginners) if you prefer videos. <!-- https://example.com/gorails.png -->
+      - [ ] [Try Ruby](https://try.ruby-lang.org/) and [BigBinary Academy](https://academy.bigbinary.com/learn-ruby) if you prefer an interactive approach.
+
+      ## Advanced
+
+      - something <!-- https://example.com/something.png -->
+      - more
+    MD
+    parsed: {
+      title:,
+      intro: nil,
+      content: {
+        "Basics" => [
+          {
+            title: "The Odin Project - Ruby",
+            url: "https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby",
+            description: nil,
+            image: "https://example.com/top.png",
+          },
+          {
+            title: "GoRails - Ruby for Beginners",
+            url: "https://gorails.com/series/ruby-for-beginners",
+            description: "if you prefer videos.",
+            image: "https://example.com/gorails.png",
+          },
+        ],
+        "Advanced" => [
+          {
+            title: "something",
+            url: nil,
+            description: nil,
+            image: "https://example.com/something.png",
+          },
+          {
+            title: "more",
+            url: nil,
+            description: nil,
+            image: nil,
+          },
+        ],
+      },
+    }
+
   # Test cases generated from the data above.
   @cases.each do |description, markdown, expected|
     define_method "test_#{description.tr(" ", "_")}" do
@@ -121,19 +170,19 @@ class TestMarkdownCurriculum < Minitest::Test
   #   ### Ruby basics
 
   #   - **Intro:**
-  #     - [x] [The Odin Project - Ruby](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby) <!-- https://avatars.githubusercontent.com/u/4441966?s=280 -->
-  #     - [x] [GoRails - Ruby for Beginners](https://gorails.com/series/ruby-for-beginners) if you prefer videos.
-  #     - [ ] [BigBinary Academy](https://academy.bigbinary.com/learn-ruby)
+  #     - [x] [The Odin Project - Ruby](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby) <!-- https://example.com/top.png -->
+  #     - [x] [GoRails - Ruby for Beginners](https://gorails.com/series/ruby-for-beginners) if you prefer videos. <!-- https://example.com/gorails.png -->
+  #     - [ ] [Try Ruby](https://try.ruby-lang.org/) and [BigBinary Academy](https://academy.bigbinary.com/learn-ruby) if you prefer an interactive approach.
 
   #   ## Advanced concepts
 
   #   ### Quantum computing
 
-  #   - [ ] something
+  #   - something
 
   #   ### The meaning of life
 
-  #   - [ ] something else
+  #   - something else
   # MD
 
   # expected = [

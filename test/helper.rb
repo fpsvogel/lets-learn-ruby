@@ -4,6 +4,13 @@ require "minitest/reporters"
 require "minitest/profile"
 require "shoulda"
 require "rails-dom-testing"
+require "pretty_diffs"
+
+module Minitest
+  class Test
+    include PrettyDiffs
+  end
+end
 
 # Report with color.
 Minitest::Reporters.use! [

@@ -43,7 +43,7 @@ group :test, optional: true do
   gem "minitest-reporters"
   gem "shoulda"
   gem "rails-dom-testing"
+  gem "pretty-diffs"
 end
 
 gem "bridgetown-seo-tag", "~> 6.0"
-gem "debug"

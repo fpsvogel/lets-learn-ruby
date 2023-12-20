@@ -1,5 +1,3 @@
-require 'debug'
-
 class MarkdownCurriculum
   private attr_reader :markdown_string, :config
 
@@ -43,7 +41,8 @@ class MarkdownCurriculum
           .reject { |k, v| k.downcase == "table of contents" }
           # Get subsections (h3).
           .transform_values.with_index { |content_under_h2, i|
-            next content_under_h2 unless content_under_h2&.include?("\n### ")
+            next nil if content_under_h2.nil?
+            next parse_list(content_under_h2) unless content_under_h2.include?("\n### ")
 
             content_under_h2
               .split(/\n### /)
@@ -63,6 +62,59 @@ class MarkdownCurriculum
   private
 
   def default_config
-    { ignore_completed: true }
+    { ignore_incomplete: true }
+  end
+
+  def parse_list(markdown_string)
+    markdown_string
+      .then { |string|
+        if config[:ignore_incomplete]
+          string.gsub(/\s+- \[ \].+?(\n|\z)/, "")
+        else
+          string
+        end
+      }
+      .split("\n")
+      .map(&:strip)
+      .map { |line|
+        line
+          .match(
+            %r{\A
+              (
+                (\*|-) # bullet
+                \s*
+                (\[(x|\s)\])? # check box
+              )
+              \s*
+              (
+                (
+                  \[
+                    (?<title>.+)
+                  \]
+                  \(
+                    (?<url>.+)
+                  \)
+                  \s*
+                  (
+                    (?<description>.*?)
+                  )?
+                )
+                |
+                (?<title>.+?)
+              )
+              (
+                \s*
+                <!--
+                \s*
+                (?<image>.+)
+                \s*
+                -->
+              )?
+            \z}x
+          )
+          .named_captures
+          .transform_values { _1&.strip&.presence }
+          .transform_keys(&:to_sym)
+      }
   end
 end
