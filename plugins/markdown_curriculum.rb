@@ -44,11 +44,11 @@ class MarkdownCurriculum
           # Get subsections (h3).
           .transform_values.with_index { |content_under_h2, i|
             next nil if content_under_h2.nil?
-            # debugger if content_under_h2.include? "ABC Bootcamp"
             next parse_list(content_under_h2) unless content_under_h2.match?(/^### /)
 
             content_under_h2
-              .split(/\n### /)
+              .split(/\n(?=### )/)
+              .reject { !_1.start_with?("### ") }
               .map { |h3_and_content|
                 h3_and_content.delete_prefix("### ").split("\n", 2)
               }
@@ -60,8 +60,28 @@ class MarkdownCurriculum
               .transform_values { |content_under_h3|
                 content_under_h3 = content_under_h3&.strip&.presence
                 next unless content_under_h3
+                next parse_list(content_under_h3) unless content_under_h2.match?(/^- \*\*/)
 
-                parse_list(content_under_h3)
+                content_under_h3
+                  .split(/\n(?=- \*\*)/)
+                  .reject { !_1.start_with?("- **") }
+                  .map { |h4_and_content|
+                    h4_and_content.split("\n", 2)
+                  }
+                  # For empty subsubsections, add nil to form a 2-element (#to_h-able) array.
+                  .map { |array|
+                    (2 - array.length).times.inject(array) { |array, i| array << nil }
+                  }
+                  .to_h
+                  .transform_keys { |formatted_h4|
+                    h4 = formatted_h4.match(/- \*\*(.+)\*\*/).captures.first
+                    h4.delete_suffix(":").delete_suffix(".")
+                  }
+                  .transform_values  { |content_under_h4|
+                    content_under_h4 = content_under_h4&.strip&.presence
+                    next unless content_under_h4
+                    parse_list(content_under_h4)
+                  }
               }
           }
       }

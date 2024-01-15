@@ -118,6 +118,33 @@ class TestMarkdownCurriculum < Minitest::Test
     MD
     parsed: prev_parsed
 
+  example "empty subsubsections",
+    markdown: <<~MD,
+      # #{title}
+
+      ## Advanced
+
+      ### Quantum computing
+
+      - **Basics:**
+      - **Experimental tech** that probably should be avoided.
+
+      ### The meaning of life
+    MD
+    parsed: {
+      title:,
+      intro: nil,
+      content: {
+        "Advanced" => {
+          "Quantum computing" => {
+            "Basics" => nil,
+            "Experimental tech" => nil,
+          },
+          "The meaning of life" => nil,
+        },
+      },
+    }
+
   example "content under sections",
     markdown: <<~MD,
       # #{title}
@@ -126,13 +153,13 @@ class TestMarkdownCurriculum < Minitest::Test
 
       ## Basics
 
-      Some prose that is ignored.
+      Prose under section that is ignored.
 
       - [x] [The Odin Project - Ruby](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby) <!-- https://example.com/top.png -->
       - [x] [GoRails - Ruby for Beginners](https://gorails.com/series/ruby-for-beginners). Great if you prefer videos. <!-- https://example.com/gorails.png -->
       - [ ] [Try Ruby](https://try.ruby-lang.org/) and [BigBinary Academy](https://academy.bigbinary.com/learn-ruby) if you prefer an interactive approach.
 
-      More prose that is ignored.
+      More prose under section that is ignored.
 
       ## Intermediate
 
@@ -180,13 +207,15 @@ class TestMarkdownCurriculum < Minitest::Test
 
       ## Advanced
 
+      Prose under section that is ignored.
+
       ### Quantum computing
 
-      Some prose that is ignored.
+      Prose under subsection that is ignored.
 
       - [x] [ABC Bootcamp - Quantum track](https://www.abcbootcamp.com/tracks/quantum) <!-- https://example.com/quantum.png -->
 
-      More prose that is ignored.
+      More prose under subsection that is ignored.
     MD
     parsed: {
       title:,
@@ -201,6 +230,40 @@ class TestMarkdownCurriculum < Minitest::Test
               image: "https://example.com/quantum.png",
             },
           ],
+        },
+      },
+    }
+
+  example "content under subsubsections",
+    markdown: <<~MD,
+      # #{title}
+
+      ## Advanced
+
+      ### Quantum computing
+
+      Prose under subsection that is ignored.
+
+      - **Basics:**
+        - [x] [ABC Bootcamp - Quantum track](https://www.abcbootcamp.com/tracks/quantum) <!-- https://example.com/quantum.png -->
+
+      More prose under subsection that is ignored.
+    MD
+    parsed: {
+      title:,
+      intro: nil,
+      content: {
+        "Advanced" => {
+          "Quantum computing" => {
+            "Basics" => [
+              {
+                title: "ABC Bootcamp - Quantum track",
+                url: "https://www.abcbootcamp.com/tracks/quantum",
+                description: nil,
+                image: "https://example.com/quantum.png",
+              },
+            ],
+          },
         },
       },
     }
