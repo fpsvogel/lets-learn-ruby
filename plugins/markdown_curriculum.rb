@@ -1,3 +1,5 @@
+require "debug"
+
 class MarkdownCurriculum
   private attr_reader :markdown_string, :config
 
@@ -42,7 +44,8 @@ class MarkdownCurriculum
           # Get subsections (h3).
           .transform_values.with_index { |content_under_h2, i|
             next nil if content_under_h2.nil?
-            next parse_list(content_under_h2) unless content_under_h2.include?("\n### ")
+            # debugger if content_under_h2.include? "ABC Bootcamp"
+            next parse_list(content_under_h2) unless content_under_h2.match?(/^### /)
 
             content_under_h2
               .split(/\n### /)
@@ -54,7 +57,12 @@ class MarkdownCurriculum
                 (2 - array.length).times.inject(array) { |array, i| array << nil }
               }
               .to_h
-              .transform_values { _1&.strip&.presence }
+              .transform_values { |content_under_h3|
+                content_under_h3 = content_under_h3&.strip&.presence
+                next unless content_under_h3
+
+                parse_list(content_under_h3)
+              }
           }
       }
   end

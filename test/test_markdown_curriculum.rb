@@ -143,7 +143,7 @@ class TestMarkdownCurriculum < Minitest::Test
 
       More prose that is ignored.
 
-      ## Advanced
+      ## Intermediate
 
       - something <!-- https://example.com/something.png -->
       - more
@@ -166,7 +166,7 @@ class TestMarkdownCurriculum < Minitest::Test
             image: "https://example.com/gorails.png",
           },
         ],
-        "Advanced" => [
+        "Intermediate" => [
           {
             title: "something",
             url: nil,
@@ -180,6 +180,39 @@ class TestMarkdownCurriculum < Minitest::Test
             image: nil,
           },
         ],
+      },
+    }
+
+  example "content under subsections",
+    markdown: <<~MD,
+      # #{title}
+
+      #{intro}
+
+      ## Advanced
+
+      ### Quantum computing
+
+      Some prose that is ignored.
+
+      - [x] [ABC Bootcamp - Quantum track](https://www.abcbootcamp.com/tracks/quantum) <!-- https://example.com/quantum.png -->
+
+      More prose that is ignored.
+    MD
+    parsed: {
+      title:,
+      intro:,
+      content: {
+        "Advanced" => {
+          "Quantum computing" => [
+            {
+              title: "ABC Bootcamp - Quantum track",
+              url: "https://www.abcbootcamp.com/tracks/quantum",
+              description: nil,
+              image: "https://example.com/quantum.png",
+            },
+          ],
+        },
       },
     }
 

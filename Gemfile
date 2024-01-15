@@ -44,6 +44,7 @@ group :test, optional: true do
   gem "shoulda"
   gem "rails-dom-testing"
   gem "pretty-diffs"
+  gem "debug"
 end
 
 gem "bridgetown-seo-tag", "~> 6.0"
