@@ -78,6 +78,16 @@ class TestMarkdownCurriculum < Minitest::Test
     MD
     parsed: prev_parsed
 
+  example "'Preliminaries' section",
+    markdown: <<~MD,
+      # #{title}
+      #{intro}
+      ## Preliminaries
+      ## Preface
+      ## Basics
+    MD
+    parsed: prev_parsed
+
   example "empty subsections",
     markdown: <<~MD,
       # #{title}

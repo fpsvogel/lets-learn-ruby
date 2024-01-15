@@ -38,7 +38,7 @@ class MarkdownCurriculum
           .to_h
           .transform_keys(&:strip)
           .transform_values { _1&.strip&.presence }
-          .reject { |k, v| k.downcase == "table of contents" }
+          .reject { |k, v| ["table of contents", "preliminaries"].include?(k.downcase) }
           # Get subsections (h3).
           .transform_values.with_index { |content_under_h2, i|
             next nil if content_under_h2.nil?
