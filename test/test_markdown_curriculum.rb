@@ -34,8 +34,6 @@ class TestMarkdownCurriculum < Minitest::Test
     markdown: <<~MD,
       # #{title}
 
-      #{intro}
-
       ## Preface
 
 
@@ -44,14 +42,13 @@ class TestMarkdownCurriculum < Minitest::Test
     MD
     parsed: {
       title:,
-      intro:,
+      intro: nil,
       content: { "Preface" => nil, "Basics" => nil },
     }
 
   example "empty sections with minimal line breaks",
     markdown: <<~MD,
       # #{title}
-      #{intro}
       ## Preface
       ## Basics
     MD
@@ -60,7 +57,6 @@ class TestMarkdownCurriculum < Minitest::Test
   example "table of contents",
     markdown: <<~MD,
       # #{title}
-      #{intro}
       ## Table of contents
       ## Preface
       ## Basics
@@ -70,7 +66,6 @@ class TestMarkdownCurriculum < Minitest::Test
   example "'omit in toc' comments",
     markdown: <<~MD,
       # #{title}
-      #{intro}
       <!-- omit in toc -->
       ## Preface
       <!-- omit in toc -->
@@ -81,7 +76,6 @@ class TestMarkdownCurriculum < Minitest::Test
   example "'Preliminaries' section",
     markdown: <<~MD,
       # #{title}
-      #{intro}
       ## Preliminaries
       ## Preface
       ## Basics
@@ -91,8 +85,6 @@ class TestMarkdownCurriculum < Minitest::Test
   example "empty subsections",
     markdown: <<~MD,
       # #{title}
-
-      #{intro}
 
       ## Advanced
 
@@ -106,7 +98,7 @@ class TestMarkdownCurriculum < Minitest::Test
     MD
     parsed: {
       title:,
-      intro:,
+      intro: nil,
       content: {
         "Advanced" => {
           "Quantum computing" => nil,
@@ -119,7 +111,6 @@ class TestMarkdownCurriculum < Minitest::Test
   example "empty subsections with minimal line breaks",
     markdown: <<~MD,
       # #{title}
-      #{intro}
       ## Advanced
       ### Quantum computing
       ### The meaning of life
@@ -150,7 +141,7 @@ class TestMarkdownCurriculum < Minitest::Test
     MD
     parsed: {
       title:,
-      intro:,
+      intro: intro,
       content: {
         "Basics" => [
           {
@@ -187,8 +178,6 @@ class TestMarkdownCurriculum < Minitest::Test
     markdown: <<~MD,
       # #{title}
 
-      #{intro}
-
       ## Advanced
 
       ### Quantum computing
@@ -201,7 +190,7 @@ class TestMarkdownCurriculum < Minitest::Test
     MD
     parsed: {
       title:,
-      intro:,
+      intro: nil,
       content: {
         "Advanced" => {
           "Quantum computing" => [
