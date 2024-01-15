@@ -3,6 +3,8 @@ require_relative "./helper"
 class TestMarkdownCurriculum < Minitest::Test
   def self.title = "My Ruby road map"
 
+  def self.intro = "Hi, this is my road map.\n\nI hope you like it."
+
   # DSL for defining data for a test case.
   def self.example(description, markdown:, parsed:)
     @cases ||= []
@@ -24,11 +26,17 @@ class TestMarkdownCurriculum < Minitest::Test
     markdown: "# #{title}\n",
     parsed: { title:, intro: nil, content: {} }
 
+  example "intro",
+    markdown: "# #{title}\n#{intro}",
+    parsed: { title:, intro:, content: {} }
+
   example "empty sections",
     markdown: <<~MD,
       # #{title}
 
-      ## Intro
+      #{intro}
+
+      ## Preface
 
 
       ## Basics
@@ -36,14 +44,15 @@ class TestMarkdownCurriculum < Minitest::Test
     MD
     parsed: {
       title:,
-      intro: nil,
-      content: { "Intro" => nil, "Basics" => nil },
+      intro:,
+      content: { "Preface" => nil, "Basics" => nil },
     }
 
   example "empty sections with minimal line breaks",
     markdown: <<~MD,
       # #{title}
-      ## Intro
+      #{intro}
+      ## Preface
       ## Basics
     MD
     parsed: prev_parsed
@@ -51,8 +60,19 @@ class TestMarkdownCurriculum < Minitest::Test
   example "table of contents",
     markdown: <<~MD,
       # #{title}
+      #{intro}
       ## Table of contents
-      ## Intro
+      ## Preface
+      ## Basics
+    MD
+    parsed: prev_parsed
+
+  example "'omit in toc' comments",
+    markdown: <<~MD,
+      # #{title}
+      #{intro}
+      <!-- omit in toc -->
+      ## Preface
       <!-- omit in toc -->
       ## Basics
     MD
@@ -61,6 +81,8 @@ class TestMarkdownCurriculum < Minitest::Test
   example "empty subsections",
     markdown: <<~MD,
       # #{title}
+
+      #{intro}
 
       ## Advanced
 
@@ -74,7 +96,7 @@ class TestMarkdownCurriculum < Minitest::Test
     MD
     parsed: {
       title:,
-      intro: nil,
+      intro:,
       content: {
         "Advanced" => {
           "Quantum computing" => nil,
@@ -87,6 +109,7 @@ class TestMarkdownCurriculum < Minitest::Test
   example "empty subsections with minimal line breaks",
     markdown: <<~MD,
       # #{title}
+      #{intro}
       ## Advanced
       ### Quantum computing
       ### The meaning of life
@@ -97,6 +120,9 @@ class TestMarkdownCurriculum < Minitest::Test
   example "content under sections",
     markdown: <<~MD,
       # #{title}
+
+      #{intro}
+
       ## Basics
 
       - [x] [The Odin Project - Ruby](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby) <!-- https://example.com/top.png -->
@@ -110,7 +136,7 @@ class TestMarkdownCurriculum < Minitest::Test
     MD
     parsed: {
       title:,
-      intro: nil,
+      intro:,
       content: {
         "Basics" => [
           {
@@ -150,68 +176,4 @@ class TestMarkdownCurriculum < Minitest::Test
       assert_equal expected, actual
     end
   end
-
-  # TODO
-  # <<~MD
-  #   # My Ruby road map
-
-  #   Hi, this is my road map.
-
-  #   ## Table of contents
-
-  #   (This section should be omitted.)
-
-  #   ## Intro
-
-  #   This section might contain prose.
-
-  #   ## Basics
-
-  #   ### Ruby basics
-
-  #   - **Intro:**
-  #     - [x] [The Odin Project - Ruby](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby) <!-- https://example.com/top.png -->
-  #     - [x] [GoRails - Ruby for Beginners](https://gorails.com/series/ruby-for-beginners) if you prefer videos. <!-- https://example.com/gorails.png -->
-  #     - [ ] [Try Ruby](https://try.ruby-lang.org/) and [BigBinary Academy](https://academy.bigbinary.com/learn-ruby) if you prefer an interactive approach.
-
-  #   ## Advanced concepts
-
-  #   ### Quantum computing
-
-  #   - something
-
-  #   ### The meaning of life
-
-  #   - something else
-  # MD
-
-  # expected = [
-  #   {
-  #     "Basics" =>
-  #       [
-  #         {
-  #           "Ruby basics" =>
-  #             [
-  #               {
-  #                 "Intro" =>
-  #                   [
-  #                     {
-  #                       title: "The Odin Project - Ruby",
-  #                       description: nil,
-  #                       url: "https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby",
-  #                       image: "https://avatars.githubusercontent.com/u/4441966?s=280",
-  #                     },
-  #                     {
-  #                       title: "GoRails - Ruby for Beginners",
-  #                       description: "If you prefer videos.",
-  #                       url: "https://gorails.com/series/ruby-for-beginners",
-  #                       image: nil,
-  #                     },
-  #                   ],
-  #               },
-  #             ],
-  #         },
-  #       ],
-  #   },
-  # ]
 end
