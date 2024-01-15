@@ -112,9 +112,10 @@ class MarkdownCurriculum
               )?
             \z}x
           )
-          .named_captures
-          .transform_values { _1&.strip&.presence }
-          .transform_keys(&:to_sym)
+          &.named_captures
+          &.transform_values { _1&.strip&.presence }
+          &.transform_keys(&:to_sym)
       }
+      .compact
   end
 end

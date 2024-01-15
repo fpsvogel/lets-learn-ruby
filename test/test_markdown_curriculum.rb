@@ -135,9 +135,13 @@ class TestMarkdownCurriculum < Minitest::Test
 
       ## Basics
 
+      Some prose that is ignored.
+
       - [x] [The Odin Project - Ruby](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby) <!-- https://example.com/top.png -->
       - [x] [GoRails - Ruby for Beginners](https://gorails.com/series/ruby-for-beginners) if you prefer videos. <!-- https://example.com/gorails.png -->
       - [ ] [Try Ruby](https://try.ruby-lang.org/) and [BigBinary Academy](https://academy.bigbinary.com/learn-ruby) if you prefer an interactive approach.
+
+      More prose that is ignored.
 
       ## Advanced
 
