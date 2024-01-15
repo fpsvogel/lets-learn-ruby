@@ -102,6 +102,7 @@ class MarkdownCurriculum
                   \(
                     (?<url>.+)
                   \)
+                  \.?
                   \s*
                   (
                     (?<description>.*?)
