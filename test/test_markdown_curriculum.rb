@@ -65,6 +65,7 @@ class TestMarkdownCurriculum < Minitest::Test
 
   example "'omit in toc' comments",
     markdown: <<~MD,
+      <!-- omit in toc -->
       # #{title}
       <!-- omit in toc -->
       ## Preface
