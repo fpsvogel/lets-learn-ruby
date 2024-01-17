@@ -145,13 +145,14 @@ class MarkdownCurriculum
           .match(
             %r{\A
               (
-                (\*|-) # bullet
+                - # bullet
                 \s*
                 (\[(x|\s)\])? # check box
               )
               \s*
               (
                 (
+                  (?<free>💲?)
                   \[
                     (?<title>.+)
                   \]
@@ -188,11 +189,16 @@ class MarkdownCurriculum
           &.transform_values { _1&.strip&.presence }
           &.transform_keys(&:to_sym) ||
             (raise(ParsingError, "Could not parse: #{line}") \
-              if line.strip.start_with?("- ") || line.strip.start_with?("* "))
+              if line.strip.start_with?("- "))
       }
       .compact
       .each { |item|
         item[:url] ||= item[:description].match(/\[.+?\]\((.+?)\)/)&.captures&.first
+        item[:free] = item[:free].blank?
+      }
+      # Reorder keys, for clearer console/JSON output.
+      .map { |item|
+        item.slice(:title, :url, :description, :image, :free)
       }
   end
 end

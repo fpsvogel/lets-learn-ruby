@@ -188,7 +188,7 @@ class TestMarkdownCurriculum < Minitest::Test
 
       ## Intermediate
 
-      - [Something](http://somethingsomethingsomething.com) <!-- https://example.com/something.png -->
+      - 💲[Something](http://somethingsomethingsomething.com) <!-- https://example.com/something.png -->
     MD
     parsed: {
       title:,
@@ -200,12 +200,14 @@ class TestMarkdownCurriculum < Minitest::Test
             url: "https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby",
             description: "[Ruby track](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby)",
             image: "https://example.com/top.png",
+            free: true,
           },
           {
             title: "GoRails - Ruby for Beginners",
             url: "https://gorails.com/series/ruby-for-beginners",
             description: "Great if you prefer videos.",
             image: "https://example.com/gorails.png",
+            free: true,
           },
         ],
         "Intermediate" => [
@@ -214,6 +216,7 @@ class TestMarkdownCurriculum < Minitest::Test
             url: "http://somethingsomethingsomething.com",
             description: nil,
             image: "https://example.com/something.png",
+            free: false,
           },
         ],
       },
@@ -246,6 +249,7 @@ class TestMarkdownCurriculum < Minitest::Test
               url: "https://www.abcbootcamp.com/tracks/quantum",
               description: nil,
               image: "https://example.com/quantum.png",
+              free: true,
             },
           ],
         },
@@ -279,6 +283,7 @@ class TestMarkdownCurriculum < Minitest::Test
                 url: "https://www.abcbootcamp.com/tracks/quantum",
                 description: nil,
                 image: "https://example.com/quantum.png",
+                free: true,
               },
             ],
           },
