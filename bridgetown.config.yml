@@ -10,3 +10,4 @@ timezone: America/New_York
 
 learn_ruby_repo:
   local_path: "/home/felipe/code/learn-ruby"
+  github_url: "https://raw.githubusercontent.com/fpsvogel/learn-ruby/main/README.md"

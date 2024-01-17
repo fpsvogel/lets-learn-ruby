@@ -1,3 +1,5 @@
+require "net/http"
+
 class Builders::LoadCurriculum < SiteBuilder
   def build
     hook :site, :post_read do |site|
@@ -7,7 +9,7 @@ class Builders::LoadCurriculum < SiteBuilder
             .new(local_file_contents || github_file_contents)
             .parse
 
-        # debugger
+        debugger
       end
     end
   end
@@ -26,6 +28,8 @@ class Builders::LoadCurriculum < SiteBuilder
   # The contents of github.com/fpsvogel/learn-ruby/README.md
   # @return [String]
   def github_file_contents
-    # TODO
+    Net::HTTP
+      .get(URI(config.learn_ruby_repo.github_url))
+      .force_encoding("UTF-8")
   end
 end
