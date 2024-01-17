@@ -133,7 +133,7 @@ class MarkdownCurriculum
     markdown_string
       .then { |string|
         if config[:ignore_incomplete]
-          string.gsub(/\s+- \[ \].+?(\n|\z)/, "")
+          string.gsub(/^\s*- 💲?\[ \][^\n]+?(\n|\z)/, "")
         else
           string
         end
