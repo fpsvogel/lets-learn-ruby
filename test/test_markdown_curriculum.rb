@@ -119,6 +119,19 @@ class TestMarkdownCurriculum < Minitest::Test
     MD
     parsed: prev_parsed
 
+  example "empty subsections formatted as subsubsections",
+    markdown: <<~MD,
+      # #{title}
+
+      ## Advanced
+
+      - **Quantum computing:**
+      - **The meaning of life:**
+
+      ## Galaxy brain
+    MD
+    parsed: prev_parsed
+
   example "empty subsubsections",
     markdown: <<~MD,
       # #{title}
@@ -146,6 +159,17 @@ class TestMarkdownCurriculum < Minitest::Test
       },
     }
 
+  example "empty subsubsections with minimal line breaks",
+    markdown: <<~MD,
+      # #{title}
+      ## Advanced
+      ### Quantum computing
+      - **Basics:**
+      - **Experimental tech** that probably should be avoided.
+      ### The meaning of life
+    MD
+    parsed: prev_parsed
+
   example "content under sections",
     markdown: <<~MD,
       # #{title}
@@ -156,7 +180,7 @@ class TestMarkdownCurriculum < Minitest::Test
 
       Prose under section that is ignored.
 
-      - [x] [The Odin Project - Ruby](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby) <!-- https://example.com/top.png -->
+      - [x] The Odin Project: [Ruby track](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby) <!-- https://example.com/top.png -->
       - [x] [GoRails - Ruby for Beginners](https://gorails.com/series/ruby-for-beginners). Great if you prefer videos. <!-- https://example.com/gorails.png -->
       - [ ] [Try Ruby](https://try.ruby-lang.org/) and [BigBinary Academy](https://academy.bigbinary.com/learn-ruby) if you prefer an interactive approach.
 
@@ -164,8 +188,7 @@ class TestMarkdownCurriculum < Minitest::Test
 
       ## Intermediate
 
-      - something <!-- https://example.com/something.png -->
-      - more
+      - [Something](http://somethingsomethingsomething.com) <!-- https://example.com/something.png -->
     MD
     parsed: {
       title:,
@@ -173,9 +196,9 @@ class TestMarkdownCurriculum < Minitest::Test
       content: {
         "Basics" => [
           {
-            title: "The Odin Project - Ruby",
+            title: "The Odin Project",
             url: "https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby",
-            description: nil,
+            description: "[Ruby track](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby)",
             image: "https://example.com/top.png",
           },
           {
@@ -187,16 +210,10 @@ class TestMarkdownCurriculum < Minitest::Test
         ],
         "Intermediate" => [
           {
-            title: "something",
-            url: nil,
+            title: "Something",
+            url: "http://somethingsomethingsomething.com",
             description: nil,
             image: "https://example.com/something.png",
-          },
-          {
-            title: "more",
-            url: nil,
-            description: nil,
-            image: nil,
           },
         ],
       },
