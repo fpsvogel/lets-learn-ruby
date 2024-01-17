@@ -154,10 +154,10 @@ class MarkdownCurriculum
                 (
                   (?<free>💲?)
                   \[
-                    (?<title>.+)
+                    (?<title>.+?)
                   \]
                   \(
-                    (?<url>.+)
+                    (?<url>.+?)
                   \)
                   \.?
                   \s*
@@ -179,7 +179,7 @@ class MarkdownCurriculum
                 \s*
                 <!--
                 \s*
-                (?<image>.+)
+                (?<image>.+?)
                 \s*
                 -->
               )?
