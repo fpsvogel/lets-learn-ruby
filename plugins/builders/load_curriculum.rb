@@ -8,8 +8,6 @@ class Builders::LoadCurriculum < SiteBuilder
           MarkdownCurriculum
             .new(local_file_contents || github_file_contents)
             .parse
-
-        debugger
       end
     end
   end

@@ -58,7 +58,6 @@ body > nav a {
 }
 
 main {
-  text-align: center;
   margin: 2rem auto 4rem;
   max-width: 65rem;
   min-height: calc(100vh - 200px);
@@ -70,6 +69,10 @@ main {
   @media (max-width: 500px) {
     padding: 16px 16px 50px;
   }
+}
+
+pre {
+  overflow: scroll;
 }
 
 footer {
