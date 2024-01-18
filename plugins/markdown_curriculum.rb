@@ -1,5 +1,3 @@
-require "debug"
-
 class MarkdownCurriculum
   class ParsingError < StandardError; end
 
