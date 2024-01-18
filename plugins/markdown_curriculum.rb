@@ -3,11 +3,13 @@ require "debug"
 class MarkdownCurriculum
   class ParsingError < StandardError; end
 
+  DEFAULT_CONFIG = { ignore_incomplete: true }
+
   private attr_reader :markdown_string, :config
 
   def initialize(markdown_string, custom_config: {})
     @markdown_string = markdown_string
-    @config = custom_config.with_defaults(default_config)
+    @config = custom_config.with_defaults(DEFAULT_CONFIG)
   end
 
   # Parses the Markdown curriculum into groups of item hashes.
@@ -21,10 +23,6 @@ class MarkdownCurriculum
   end
 
   private
-
-  def default_config
-    { ignore_incomplete: true }
-  end
 
   # Returns a hash containing the title, intro, and unparsed content from the
   # given string of markdown curriculum.
