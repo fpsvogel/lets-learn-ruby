@@ -122,6 +122,7 @@ class MarkdownCurriculum
           heading_strings_and_procs: heading_strings_and_procs_under
         )
       }
+      .reject { |k, v| v.empty? }
   end
 
   # Parses a list of items, i.e. the innermost parts of the markdown content,
