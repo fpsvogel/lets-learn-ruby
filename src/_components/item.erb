@@ -1,0 +1,8 @@
+<li>
+  <a href=<%= @item.fetch(:url) %>>
+    <%= @item.fetch(:title) %>
+  </a>
+  <% if @item[:description] %>
+    <%=raw Kramdown::Document.new(@item.fetch(:description)).to_html %>
+  <% end %>
+</li>

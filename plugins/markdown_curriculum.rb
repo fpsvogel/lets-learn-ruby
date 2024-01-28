@@ -16,6 +16,7 @@ class MarkdownCurriculum
   def parse
     markdown_string
       .gsub("<!-- omit in toc -->\n", "")
+      .gsub(" #TODO", "")
       .then { extract_title_and_intro(_1) }
       .then { extract_content(_1) }
   end
@@ -156,7 +157,7 @@ class MarkdownCurriculum
                   \(
                     (?<url>.+?)
                   \)
-                  \.?
+                  (\.|,)?
                   \s*
                   (
                     (?<description>.*?)
@@ -166,7 +167,7 @@ class MarkdownCurriculum
                 (
                   (?<title>.+?)
                   (:|\.)
-                  \s+
+                  \s*
                   (
                     (?<description>.*?)
                   )?

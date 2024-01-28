@@ -1,0 +1,35 @@
+<!-- <pre>
+  <code>
+<%= JSON.pretty_generate(@curriculum) %>
+  </code>
+</pre> -->
+
+<h1><%= @curriculum.fetch(:title) %></h1>
+
+<%=raw Kramdown::Document.new(@curriculum.fetch(:intro)).to_html %>
+
+<% @curriculum.fetch("content").each do |section_name, section_content| %>
+  <h2><%= section_name %></h2>
+
+  <% section_content.each do |subsection_name, subsection_content| %>
+    <h3><%= subsection_name %></h3>
+
+    <% if subsection_content.is_a? Array %>
+      <ul>
+        <% subsection_content.each do |item| %>
+          <%= render Item.new(item) %>
+        <% end %>
+      </ul>
+    <% else %>
+      <% subsection_content.each do |subsubsection_name, subsubsection_content| %>
+        <h4><%= subsubsection_name %></h4>
+
+        <ul>
+          <% subsubsection_content.each do |item| %>
+            <%= render Item.new(item) %>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
