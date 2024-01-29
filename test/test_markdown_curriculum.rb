@@ -196,14 +196,14 @@ class TestMarkdownCurriculum < Minitest::Test
       content: {
         "Basics" => [
           {
-            title: "The Odin Project",
+            name: "The Odin Project",
             url: "https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby",
             description: "[Ruby track](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby)",
             image: "https://example.com/top.png",
             free: true,
           },
           {
-            title: "GoRails - Ruby for Beginners",
+            name: "GoRails - Ruby for Beginners",
             url: "https://gorails.com/series/ruby-for-beginners",
             description: "Great if you prefer videos.",
             image: "https://example.com/gorails.png",
@@ -212,7 +212,7 @@ class TestMarkdownCurriculum < Minitest::Test
         ],
         "Intermediate" => [
           {
-            title: "Something",
+            name: "Something",
             url: "http://somethingsomethingsomething.com",
             description: nil,
             image: "https://example.com/something.png",
@@ -245,7 +245,7 @@ class TestMarkdownCurriculum < Minitest::Test
         "Advanced" => {
           "Quantum computing" => [
             {
-              title: "ABC Bootcamp - Quantum track",
+              name: "ABC Bootcamp - Quantum track",
               url: "https://www.abcbootcamp.com/tracks/quantum",
               description: nil,
               image: "https://example.com/quantum.png",
@@ -279,7 +279,7 @@ class TestMarkdownCurriculum < Minitest::Test
           "Quantum computing" => {
             "Basics" => [
               {
-                title: "ABC Bootcamp - Quantum track",
+                name: "ABC Bootcamp - Quantum track",
                 url: "https://www.abcbootcamp.com/tracks/quantum",
                 description: nil,
                 image: "https://example.com/quantum.png",

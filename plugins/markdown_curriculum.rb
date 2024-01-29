@@ -121,7 +121,7 @@ class MarkdownCurriculum
           heading_strings_and_procs: heading_strings_and_procs_under
         )
       }
-      .reject { |k, v| v.empty? }
+      .reject { |k, v| v&.empty? }
   end
 
   # Parses a list of items, i.e. the innermost parts of the markdown content,
@@ -152,7 +152,7 @@ class MarkdownCurriculum
                 (
                   (?<free>💲?)
                   \[
-                    (?<title>.+?)
+                    (?<name>.+?)
                   \]
                   \(
                     (?<url>.+?)
@@ -165,7 +165,7 @@ class MarkdownCurriculum
                 )
                 |
                 (
-                  (?<title>.+?)
+                  (?<name>.+?)
                   (:|\.)
                   \s*
                   (
@@ -196,7 +196,7 @@ class MarkdownCurriculum
       }
       # Reorder keys, for clearer console/JSON output.
       .map { |item|
-        item.slice(:title, :url, :description, :image, :free)
+        item.slice(:name, :url, :description, :image, :free)
       }
   end
 end
