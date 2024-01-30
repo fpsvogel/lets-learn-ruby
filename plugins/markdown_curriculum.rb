@@ -157,8 +157,7 @@ class MarkdownCurriculum
                   \(
                     (?<url>.+?)
                   \)
-                  (\.|,)?
-                  \s*
+                  (\.\s|,\s)?
                   (
                     (?<description>.*?)
                   )?
@@ -166,8 +165,7 @@ class MarkdownCurriculum
                 |
                 (
                   (?<name>.+?)
-                  (:|\.)
-                  \s*
+                  (:\s|\.\s)
                   (
                     (?<description>.*?)
                   )?
