@@ -1,0 +1,6 @@
+aside::before {
+  content: "ℹ️";
+}
+aside > p {
+  display: inline-block;
+}

@@ -6,6 +6,10 @@
 
 <h1><%= @curriculum.fetch(:title) %></h1>
 
+<aside>
+  <%=raw Kramdown::Document.new(@site_intro).to_html %>
+</aside>
+
 <%=raw Kramdown::Document.new(@curriculum.fetch(:intro)).to_html %>
 
 <% @curriculum.fetch("content").each do |section_name, section_content| %>

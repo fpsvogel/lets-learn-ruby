@@ -1,6 +1,6 @@
 class Item < Bridgetown::Component
-  def initialize(item_hash)
-    @item = item_hash
+  def initialize(item)
+    @item = item
     capitalize_description_first_letter!
     ensure_description_final_period!
     transform_description_first_word_to_sentence_style!

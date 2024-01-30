@@ -3,4 +3,7 @@ layout: default
 title: Let's Learn Ruby
 ---
 
-<%= render Curriculum.new(site.data.curriculum) %>
+<%= render Curriculum.new(
+  curriculum: site.data.curriculum,
+  site_intro: site.config.site_intro
+) %>
