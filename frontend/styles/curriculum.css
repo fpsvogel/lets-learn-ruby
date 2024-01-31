@@ -70,3 +70,26 @@ aside {
     }
   }
 }
+
+.anchor {
+  font-size: 70%;
+  text-decoration: none;
+  position: absolute;
+  float: left;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+  line-height: 1.7;
+  opacity: 0;
+}
+h2 .anchor {
+  margin-left: -2.7rem;
+}
+h3 .anchor {
+  margin-left: -2.3rem;
+}
+h4 .anchor {
+  margin-left: -1.7rem;
+}
+.anchor:hover, h2:hover .anchor, h3:hover .anchor, h4:hover .anchor {
+  opacity: 1;
+}

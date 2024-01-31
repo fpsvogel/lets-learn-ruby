@@ -24,11 +24,17 @@
 
 <% @curriculum.fetch("content").each do |section_name, section_content| %>
   <h2 id=<%= id_formatted(section_name) %>>
+    <a class="anchor" tabindex="-1" href="#<%= id_formatted(section_name) %>">
+      🔗
+    </a>
     <%= section_name %>
   </h2>
 
   <% section_content.each do |subsection_name, subsection_content| %>
     <h3 id=<%= id_formatted(subsection_name) %>>
+      <a class="anchor" tabindex="-1" href="#<%= id_formatted(subsection_name) %>">
+        🔗
+      </a>
       <%= subsection_name %>
     </h3>
 
@@ -40,7 +46,12 @@
       </ul>
     <% else %>
       <% subsection_content.each do |subsubsection_name, subsubsection_content| %>
-        <h4><%= subsubsection_name %></h4>
+        <h4 id=<%= "#{id_formatted(subsubsection_name, namespace: subsection_name)}" %>>
+          <a class="anchor" tabindex="-1" href="#<%= id_formatted(subsubsection_name, namespace: subsection_name) %>">
+            🔗
+          </a>
+          <%= subsubsection_name %>
+        </h4>
 
         <ul>
           <% subsubsection_content.each do |item| %>

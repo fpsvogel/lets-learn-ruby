@@ -8,10 +8,16 @@ class Curriculum < Bridgetown::Component
 
   private
 
-  def id_formatted(section_name)
-    section_name
+  def id_formatted(str, namespace: nil)
+    id = str
       .downcase
-      .gsub(/[^\w\s]/, "")
+      .gsub(/[^\w\s-]/, "")
       .gsub(/\s/, "-")
+
+    if namespace
+      "#{id_formatted(namespace)}-#{id}"
+    else
+      id
+    end
   end
 end
