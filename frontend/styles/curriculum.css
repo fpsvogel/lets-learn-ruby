@@ -12,6 +12,11 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--heading-color);
 }
 
+subheading {
+  display: block;
+  font-size: var(--subheading-size);
+}
+
 aside {
   border: var(--border-width) solid var(--border-color);
   background-color: var(--emph-bg-color);

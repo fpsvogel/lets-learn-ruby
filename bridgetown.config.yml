@@ -12,4 +12,6 @@ learn_ruby_repo:
   local_path: "/home/felipe/code/learn-ruby"
   github_url: "https://raw.githubusercontent.com/fpsvogel/learn-ruby/main/README.md"
 
-site_intro: "If you like this list, please star it at [github.com/fpsvogel/learn-ruby](https://github.com/fpsvogel/learn-ruby). This page is generated automatically from the \"done\" items in that repo."
+title: Let's Learn Ruby
+subtitle: a resource list
+callout: "If you like this list, please star it at [github.com/fpsvogel/learn-ruby](https://github.com/fpsvogel/learn-ruby). This page is generated automatically from the \"done\" items in that repo."

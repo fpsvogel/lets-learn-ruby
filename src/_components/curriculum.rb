@@ -1,6 +1,8 @@
 class Curriculum < Bridgetown::Component
-  def initialize(curriculum:, site_intro:)
+  def initialize(curriculum:, title:, subtitle:, callout:)
     @curriculum = curriculum
-    @site_intro = site_intro
+    @callout = callout
+    @title = title
+    @subtitle = subtitle
   end
 end

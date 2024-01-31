@@ -1,8 +1,11 @@
-<h1><%= @curriculum.fetch(:title) %></h1>
+<h1>
+  <%= @title %>
+  <subheading><%= @subtitle %></subheading>
+</h1>
 
 <aside>
   <p>❤️</p>
-  <%=raw Kramdown::Document.new(@site_intro).to_html %>
+  <%=raw Kramdown::Document.new(@callout).to_html %>
 </aside>
 
 <%=raw Kramdown::Document.new(@curriculum.fetch(:intro)).to_html %>

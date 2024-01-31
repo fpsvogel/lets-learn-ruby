@@ -5,5 +5,7 @@ title: Let's Learn Ruby
 
 <%= render Curriculum.new(
   curriculum: site.data.curriculum,
-  site_intro: site.config.site_intro
+  title: site.config.title,
+  subtitle: site.config.subtitle,
+  callout: site.config.callout
 ) %>
