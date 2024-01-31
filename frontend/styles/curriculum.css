@@ -1,6 +1,30 @@
-aside::before {
-  content: "ℹ️";
+* {
+  font-family: Verdana, sans-serif;
 }
-aside > p {
-  display: inline-block;
+
+body {
+  max-width: var(--max-body-width);
+  margin: 0 auto;
+  background-color: var(--bg-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--heading-color);
+}
+
+aside {
+  border: var(--border-width) solid var(--border-color);
+  background-color: var(--emph-bg-color);
+  padding: var(--vertical-space) var(--horizontal-space);
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+
+  p {
+    margin: 0;
+
+    &:last-child {
+      margin-left: var(--horizontal-space);
+    }
+  }
 }

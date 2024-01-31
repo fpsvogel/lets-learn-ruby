@@ -1,12 +1,7 @@
-<!-- <pre>
-  <code>
-<%= JSON.pretty_generate(@curriculum) %>
-  </code>
-</pre> -->
-
 <h1><%= @curriculum.fetch(:title) %></h1>
 
 <aside>
+  <p>❤️</p>
   <%=raw Kramdown::Document.new(@site_intro).to_html %>
 </aside>
 
