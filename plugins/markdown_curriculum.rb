@@ -1,7 +1,7 @@
 class MarkdownCurriculum
   class ParsingError < StandardError; end
 
-  DEFAULT_CONFIG = { ignore_incomplete: true }
+  DEFAULT_CONFIG = { ignore_incomplete?: true }
 
   private attr_reader :markdown_string, :config
 
@@ -130,7 +130,7 @@ class MarkdownCurriculum
   def parse_list(markdown_string)
     markdown_string
       .then { |string|
-        if config[:ignore_incomplete]
+        if config.fetch(:ignore_incomplete?)
           string.gsub(/^\s*- 💲?\[ \][^\n]+?(\n|\z)/, "")
         else
           string

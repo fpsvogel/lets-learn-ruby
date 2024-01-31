@@ -1,14 +1,16 @@
 :root {
-  --max-body-width: 50rem;
+  --bg-color: #f5d7d4;
   --text-color: black;
+  --text-bg-color: #fffaf9;
+  --emph-bg-color: #ffd8d4;
+  --border-color: salmon;
   --heading-color: #770000;
   --subheading-size: 75%;
-  --bg-color: #fff5f2;
-  --emph-bg-color: #ffdbd7;
-  --border-color: salmon;
+  --max-content-width: 70rem;
   --border-width: 0.1rem;
   --border-radius: 0.4rem;
   --vertical-space: 0.5rem;
   --horizontal-space: 1rem;
+  --space-wide: 3rem;
 }
 

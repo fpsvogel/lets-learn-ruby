@@ -3,9 +3,14 @@
 }
 
 body {
-  max-width: var(--max-body-width);
-  margin: 0 auto;
   background-color: var(--bg-color);
+}
+
+main {
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: var(--space-wide);
+  background-color: var(--text-bg-color);
 }
 
 h1, h2, h3, h4, h5, h6 {
