@@ -9,11 +9,15 @@ body {
 main {
   max-width: var(--max-content-width);
   margin: 0 auto;
-  padding: var(--space-wide);
+  padding: var(--large-space);
   background-color: var(--text-bg-color);
 
   p, li {
     font-size: var(--font-size);
+  }
+
+  p {
+    margin: var(--medium-large-space) 0;
   }
 }
 
@@ -22,14 +26,29 @@ footer {
   background-color: var(--inverse-bg-color);
   text-align: center;
   font-size: var(--font-size);
-  padding: var(--space-wide);
-  margin-top: var(--space-wide);
+  padding: var(--large-space);
+  margin-top: var(--large-space);
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: var(--heading-color);
 }
-
+h1 {
+  font-size: var(--h1-font-size);
+  margin-bottom: var(--medium-large-space);
+}
+h2 {
+  font-size: var(--h2-font-size);
+  margin-top: var(--large-space);
+  border-bottom: 2px solid var(--divider-color);
+}
+h3 {
+  font-size: var(--h3-font-size);
+  margin-top: var(--large-space);
+}
+h4 {
+  font-size: var(--h4-font-size);
+}
 subheading {
   display: block;
   font-size: var(--subheading-font-size);
@@ -38,7 +57,7 @@ subheading {
 aside {
   border: var(--border-width) solid var(--border-color);
   background-color: var(--emph-bg-color);
-  padding: var(--vertical-space) var(--horizontal-space);
+  padding: var(--small-space) var(--medium-space);
   border-radius: var(--border-radius);
   display: flex;
   align-items: center;
@@ -47,7 +66,7 @@ aside {
     margin: 0;
 
     &:last-child {
-      margin-left: var(--horizontal-space);
+      margin-left: var(--medium-space);
     }
   }
 }
