@@ -3,9 +3,12 @@
   --text-color: black;
   --text-bg-color: #fffaf9;
   --emph-bg-color: #ffd8d4;
+  --inverse-bg-color: #5d0c0c;
+  --inverse-text-color: #fffaf9;
   --border-color: salmon;
   --heading-color: #770000;
-  --subheading-size: 75%;
+  --font-size: 13pt;
+  --subheading-font-size: 75%;
   --max-content-width: 70rem;
   --border-width: 0.1rem;
   --border-radius: 0.4rem;

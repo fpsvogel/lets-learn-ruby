@@ -11,6 +11,19 @@ main {
   margin: 0 auto;
   padding: var(--space-wide);
   background-color: var(--text-bg-color);
+
+  p, li {
+    font-size: var(--font-size);
+  }
+}
+
+footer {
+  color: var(--inverse-text-color);
+  background-color: var(--inverse-bg-color);
+  text-align: center;
+  font-size: var(--font-size);
+  padding: var(--space-wide);
+  margin-top: var(--space-wide);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -19,7 +32,7 @@ h1, h2, h3, h4, h5, h6 {
 
 subheading {
   display: block;
-  font-size: var(--subheading-size);
+  font-size: var(--subheading-font-size);
 }
 
 aside {
