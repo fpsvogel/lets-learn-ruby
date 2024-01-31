@@ -1,3 +1,5 @@
+<a id="top"></a>
+
 <h1>
   <%= @title %>
   <subheading><%= @subtitle %></subheading>
@@ -28,6 +30,7 @@
       🔗
     </a>
     <%= section_name %>
+    <a class="top" tabindex="-1" href="#top">⌃</a>
   </h2>
 
   <% section_content.each do |subsection_name, subsection_content| %>
@@ -36,6 +39,7 @@
         🔗
       </a>
       <%= subsection_name %>
+      <a class="top" tabindex="-1" href="#top">⌃</a>
     </h3>
 
     <% if subsection_content.is_a?(Array) %>

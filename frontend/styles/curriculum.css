@@ -76,10 +76,11 @@ aside {
   text-decoration: none;
   position: absolute;
   float: left;
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
+  padding: 0 0.5rem;
   line-height: 1.7;
   opacity: 0;
+  -webkit-user-select: none; /* Safari */
+  user-select: none;
 }
 h2 .anchor {
   margin-left: -2.7rem;
@@ -91,5 +92,21 @@ h4 .anchor {
   margin-left: -1.7rem;
 }
 .anchor:hover, h2:hover .anchor, h3:hover .anchor, h4:hover .anchor {
+  opacity: 1;
+}
+
+.top {
+  font-size: 110%;
+  color: var(--heading-color);
+  text-decoration: none;
+  position: absolute;
+  float: right;
+  padding: 0 0.5rem;
+  line-height: 1.2;
+  opacity: 0;
+  -webkit-user-select: none; /* Safari */
+  user-select: none;
+}
+.top:hover, h2:hover .top, h3:hover .top {
   opacity: 1;
 }
