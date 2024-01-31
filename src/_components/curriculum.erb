@@ -10,13 +10,29 @@
 
 <%=raw Kramdown::Document.new(@curriculum.fetch(:intro)).to_html %>
 
+<h2>Table of contents</h2>
+
+<ul>
+  <% @curriculum.fetch("content").each do |section_name, section_content| %>
+    <li>
+      <a href="#<%= id_formatted(section_name) %>">
+        <%= section_name %>
+      </a>
+    </li>
+  <% end %>
+</ul>
+
 <% @curriculum.fetch("content").each do |section_name, section_content| %>
-  <h2><%= section_name %></h2>
+  <h2 id=<%= id_formatted(section_name) %>>
+    <%= section_name %>
+  </h2>
 
   <% section_content.each do |subsection_name, subsection_content| %>
-    <h3><%= subsection_name %></h3>
+    <h3 id=<%= id_formatted(subsection_name) %>>
+      <%= subsection_name %>
+    </h3>
 
-    <% if subsection_content.is_a? Array %>
+    <% if subsection_content.is_a?(Array) %>
       <ul>
         <% subsection_content.each do |item| %>
           <%= render Item.new(item) %>
