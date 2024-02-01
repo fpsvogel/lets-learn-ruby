@@ -20,6 +20,15 @@
       <a href="#<%= id_formatted(section_name) %>">
         <%= section_name %>
       </a>
+      <ul>
+        <% section_content.each do |subsection_name, subsection_content| %>
+          <li>
+            <a href="#<%= id_formatted(subsection_name) %>">
+              <%= subsection_name %>
+            </a>
+          </li>
+        <% end %>
+      </ul>
     </li>
   <% end %>
 </ul>
