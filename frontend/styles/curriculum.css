@@ -71,22 +71,6 @@ a {
     color: var(--visited-link-color);
     text-decoration-color: var(--visited-link-underline-color);
   }
-
-  &:hover {
-    color: var(--hovered-link-color);
-    text-decoration-thickness: 5px;
-    text-decoration-color: var(--hovered-link-underline-color);
-    /* transition: all 0.2s ease; */
-
-    /* These transitions would be nice, but they're omitted due to this Firefox bug: */
-    /* https://bugzilla.mozilla.org/show_bug.cgi?id=868975 */
-
-    & img, & .missing-image {
-      border-color: var(--hovered-link-underline-color) !important;
-      border-width: var(--small-space) !important;
-      /* transition: all 0.2s ease; */
-    }
-  }
 }
 
 footer a {
@@ -94,11 +78,6 @@ footer a {
 
   &:visited {
     color: var(--alt-visited-link-color);
-  }
-
-  &:hover {
-    color: var(--visited-hovered-link-color);
-    text-decoration-color: var(--visited-hovered-link-underline-color);
   }
 }
 
@@ -139,9 +118,6 @@ h3 .anchor {
 h4 .anchor {
   margin-left: -2.6rem;
 }
-.anchor:hover, h2:hover .anchor, h3:hover .anchor, h4:hover .anchor {
-  opacity: 1;
-}
 
 .top {
   font-size: 110%;
@@ -157,9 +133,6 @@ h4 .anchor {
   &:visited {
     color: var(--heading-color);
   }
-}
-.top:hover, h2:hover .top, h3:hover .top, h4:hover .top {
-  opacity: 1;
 }
 
 section.graphical-lists {
@@ -217,10 +190,41 @@ section.graphical-lists {
       -webkit-user-select: none; /* Safari */
       user-select: none;
     }
+  }
+}
 
-    a:hover .missing-image {
-      line-height: calc(var(--figure-size) - var(--small-space) * 1.7);
+@media (hover: hover) {
+  a:hover {
+    color: var(--hovered-link-color);
+    text-decoration-thickness: 5px;
+    text-decoration-color: var(--hovered-link-underline-color);
+    /* transition: all 0.2s ease; */
+
+    /* These transitions would be nice, but they're omitted due to this Firefox bug: */
+    /* https://bugzilla.mozilla.org/show_bug.cgi?id=868975 */
+
+    & img, & .missing-image {
+      border-color: var(--hovered-link-underline-color) !important;
+      border-width: var(--small-space) !important;
+      /* transition: all 0.2s ease; */
     }
+  }
+
+  footer a:hover {
+    color: var(--visited-hovered-link-color);
+    text-decoration-color: var(--visited-hovered-link-underline-color);
+  }
+
+  .anchor:hover, h2:hover .anchor, h3:hover .anchor, h4:hover .anchor {
+    opacity: 1;
+  }
+
+  .top:hover, h2:hover .top, h3:hover .top, h4:hover .top {
+    opacity: 1;
+  }
+
+  section.graphical-lists li a:hover .missing-image {
+    line-height: calc(var(--figure-size) - var(--small-space) * 1.7);
   }
 }
 
