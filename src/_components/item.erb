@@ -4,9 +4,7 @@
       <% if @item.fetch(:image) %>
         <img src=<%= @item[:image] %>>
       <% else %>
-        <div class="missing-image-wrapper">
-          <div>❓</div>
-        </div>
+        <p class="missing-image">❓</p>
       <% end %>
 
       <h5><%= @item.fetch(:name) %></h5>

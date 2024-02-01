@@ -77,10 +77,11 @@ a {
     text-decoration-thickness: 5px;
     text-decoration-color: var(--hovered-link-underline-color);
     /* transition: all 0.2s ease; */
-    /* Would be nice, but omitted for now due to this Firefox bug: */
+
+    /* These transitions would be nice, but they're omitted due to this Firefox bug: */
     /* https://bugzilla.mozilla.org/show_bug.cgi?id=868975 */
 
-    & img, & .missing-image-wrapper {
+    & img, & .missing-image {
       border-color: var(--hovered-link-underline-color) !important;
       border-width: var(--small-space) !important;
       /* transition: all 0.2s ease; */
@@ -202,17 +203,23 @@ section.graphical-lists {
       border-radius: var(--border-radius);
     }
 
-    .missing-image-wrapper {
+    .missing-image {
+      margin: 0;
       width: var(--figure-size);
       height: var(--figure-size);
       border: var(--alt-border-thickness) solid var(--alt-border-color);
       border-radius: var(--border-radius);
-      display: flex;
+      text-align: center;
+      font-size: var(--image-missing-icon-size);
+      text-decoration: none;
+      display: inline-block; /* So that `text-decoration: none` works. */
+      line-height: var(--figure-size);
+      -webkit-user-select: none; /* Safari */
+      user-select: none;
+    }
 
-      & > div {
-        font-size: var(--image-missing-icon-size);
-        margin: auto;
-      }
+    a:hover .missing-image {
+      line-height: calc(var(--figure-size) - var(--small-space) * 1.7);
     }
   }
 }
