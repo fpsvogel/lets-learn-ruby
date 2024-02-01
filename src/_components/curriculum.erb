@@ -2,7 +2,7 @@
 
 <h1>
   <%= @title %>
-  <subheading><%= @subtitle %></subheading>
+  <my-subheading><%= @subtitle %></-subheading>
 </h1>
 
 <aside>
@@ -24,45 +24,47 @@
   <% end %>
 </ul>
 
-<% @curriculum.fetch("content").each do |section_name, section_content| %>
-  <h2 id=<%= id_formatted(section_name) %>>
-    <a class="anchor" tabindex="-1" href="#<%= id_formatted(section_name) %>">
-      🔗
-    </a>
-    <%= section_name %>
-    <a class="top" tabindex="-1" href="#top">⌃</a>
-  </h2>
-
-  <% section_content.each do |subsection_name, subsection_content| %>
-    <h3 id=<%= id_formatted(subsection_name) %>>
-      <a class="anchor" tabindex="-1" href="#<%= id_formatted(subsection_name) %>">
+<my-graphical-lists>
+  <% @curriculum.fetch("content").each do |section_name, section_content| %>
+    <h2 id=<%= id_formatted(section_name) %>>
+      <a class="anchor" tabindex="-1" href="#<%= id_formatted(section_name) %>">
         🔗
       </a>
-      <%= subsection_name %>
+      <%= section_name %>
       <a class="top" tabindex="-1" href="#top">⌃</a>
-    </h3>
+    </h2>
 
-    <% if subsection_content.is_a?(Array) %>
-      <ul>
-        <% subsection_content.each do |item| %>
-          <%= render Item.new(item) %>
-        <% end %>
-      </ul>
-    <% else %>
-      <% subsection_content.each do |subsubsection_name, subsubsection_content| %>
-        <h4 id=<%= "#{id_formatted(subsubsection_name, namespace: subsection_name)}" %>>
-          <a class="anchor" tabindex="-1" href="#<%= id_formatted(subsubsection_name, namespace: subsection_name) %>">
-            🔗
-          </a>
-          <%= subsubsection_name %>
-        </h4>
+    <% section_content.each do |subsection_name, subsection_content| %>
+      <h3 id=<%= id_formatted(subsection_name) %>>
+        <a class="anchor" tabindex="-1" href="#<%= id_formatted(subsection_name) %>">
+          🔗
+        </a>
+        <%= subsection_name %>
+        <a class="top" tabindex="-1" href="#top">⌃</a>
+      </h3>
 
+      <% if subsection_content.is_a?(Array) %>
         <ul>
-          <% subsubsection_content.each do |item| %>
+          <% subsection_content.each do |item| %>
             <%= render Item.new(item) %>
           <% end %>
         </ul>
+      <% else %>
+        <% subsection_content.each do |subsubsection_name, subsubsection_content| %>
+          <h4 id=<%= "#{id_formatted(subsubsection_name, namespace: subsection_name)}" %>>
+            <a class="anchor" tabindex="-1" href="#<%= id_formatted(subsubsection_name, namespace: subsection_name) %>">
+              🔗
+            </a>
+            <%= subsubsection_name %>
+          </h4>
+
+          <ul>
+            <% subsubsection_content.each do |item| %>
+              <%= render Item.new(item) %>
+            <% end %>
+          </ul>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>
-<% end %>
+</my-graphical-lists>

@@ -1,9 +1,7 @@
-* {
-  font-family: Verdana, sans-serif;
-}
-
 body {
   background-color: var(--bg-color);
+  font-family: Verdana, sans-serif;
+  line-height: 1.6;
 }
 
 main {
@@ -35,12 +33,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 h1 {
   font-size: var(--h1-font-size);
+  margin-top: 0;
   margin-bottom: var(--medium-large-space);
 }
 h2 {
   font-size: var(--h2-font-size);
   margin-top: var(--large-space);
-  border-bottom: 2px solid var(--divider-color);
+  border-bottom: var(--divider-thickness) solid var(--divider-color);
 }
 h3 {
   font-size: var(--h3-font-size);
@@ -49,16 +48,21 @@ h3 {
 h4 {
   font-size: var(--h4-font-size);
 }
-subheading {
+my-subheading {
   display: block;
+  margin-top: calc(-1 * var(--medium-large-space));
   font-size: var(--subheading-font-size);
 }
 
 a {
   color: var(--link-color);
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--link-underline-color);
+  text-underline-offset: 0.2rem;
 
   &:visited {
     color: var(--visited-link-color);
+    text-decoration-color: var(--visited-link-underline-color);
   }
 }
 
@@ -71,9 +75,9 @@ footer a {
 }
 
 aside {
-  border: var(--border-width) solid var(--border-color);
+  border: var(--border-thickness) solid var(--border-color);
   background-color: var(--emph-bg-color);
-  padding: var(--small-space) var(--medium-space);
+  padding: var(--medium-space);
   border-radius: var(--border-radius);
   display: flex;
   align-items: center;
@@ -125,4 +129,45 @@ h4 .anchor {
 }
 .top:hover, h2:hover .top, h3:hover .top {
   opacity: 1;
+}
+
+my-graphical-lists {
+  * {
+    line-height: normal;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: var(--medium-space);
+  }
+
+  li {
+    width: 15rem;
+
+    figure {
+      margin: 0;
+
+      figcaption {
+        margin-top: var(--small-space);
+
+        & > a {
+          font-weight: bold;
+        }
+      }
+    }
+
+    img {
+      height: 15rem;
+      width: 15rem;
+      object-fit: cover;
+      border: var(--alt-border-thickness) solid var(--alt-border-color);
+      border-radius: var(--border-radius);
+    }
+  }
 }

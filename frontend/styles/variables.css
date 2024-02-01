@@ -1,8 +1,11 @@
 :root {
   --bg-color: #f5d7d4;
   --text-color: black;
+  --emph-text-color: #c43323;
   --link-color: #2929bb;
+  --link-underline-color: #7c7cea;
   --visited-link-color: #8b1a34;
+  --visited-link-underline-color: salmon;
   --alt-link-color: #e9c879;
   --alt-visited-link-color: #f79b90;
   --text-bg-color: #fffaf9;
@@ -10,16 +13,19 @@
   --inverse-bg-color: #5d0c0c;
   --inverse-text-color: #fffaf9;
   --border-color: salmon;
-  --divider-color: #ef6b5c;
+  --alt-border-color: #770000;
+  --divider-color: salmon;
   --heading-color: #770000;
   --font-size: 13pt;
-  --h1-font-size: 36pt;
+  --h1-font-size: 40pt;
   --h2-font-size: 30pt;
   --h3-font-size: 22pt;
-  --h4-font-size: 14pt;
+  --h4-font-size: 16pt;
   --subheading-font-size: 75%;
   --max-content-width: 70rem;
-  --border-width: 0.1rem;
+  --divider-thickness: 0.3rem;
+  --border-thickness: 0.2rem;
+  --alt-border-thickness: 0.1rem;
   --border-radius: 0.4rem;
   --small-space: 0.5rem;
   --medium-space: 1rem;

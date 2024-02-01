@@ -1,11 +1,15 @@
 <li>
-  <% if @item.fetch(:image) %>
-    <img src=<%= @item[:image] %>>
-  <% end %>
-  <a href=<%= @item.fetch(:url) %>>
-    <%= @item.fetch(:name) %>
-  </a>
-  <% if @item.fetch(:description) %>
-    <%=raw Kramdown::Document.new(@item.fetch(:description)).to_html %>
-  <% end %>
+  <figure>
+    <% if @item.fetch(:image) %>
+      <img src=<%= @item[:image] %>>
+    <% end %>
+    <figcaption>
+      <a href=<%= @item.fetch(:url) %>>
+        <%= @item.fetch(:name) %>
+      </a>
+      <% if @item.fetch(:description) %>
+        <%=raw Kramdown::Document.new(@item.fetch(:description)).to_html %>
+      <% end %>
+    </figcaption>
+  </figure>
 </li>
