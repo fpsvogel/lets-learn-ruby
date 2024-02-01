@@ -51,6 +51,11 @@ h3 {
 h4 {
   font-size: var(--h4-font-size);
 }
+h5 { /* Item name */
+  font-size: var(--font-size);
+  margin: 0;
+  padding-top: var(--small-space);
+}
 my-subheading {
   display: block;
   font-size: var(--subheading-font-size);
@@ -136,7 +141,7 @@ h4 .anchor {
   opacity: 1;
 }
 
-my-graphical-lists {
+section.graphical-lists {
   ul {
     list-style-type: none;
     margin: 0 0 var(--large-space);
@@ -156,11 +161,16 @@ my-graphical-lists {
       margin: 0;
       line-height: normal;
 
-      figcaption {
-        margin-top: var(--small-space);
+      & > a {
+        font-weight: bold;
+        /* padding-top: var(--small-space); */
+      }
 
-        & > a {
-          font-weight: bold;
+      figcaption {
+        margin: var(--medium-space) 0;
+
+        & p {
+          margin: 0;
         }
       }
     }

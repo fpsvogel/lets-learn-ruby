@@ -33,7 +33,7 @@
   <% end %>
 </ul>
 
-<my-graphical-lists>
+<section class="graphical-lists">
   <% @curriculum.fetch("content").each do |section_name, section_content| %>
     <h2 id=<%= id_formatted(section_name) %>>
       <a class="anchor" tabindex="-1" href="#<%= id_formatted(section_name) %>">
@@ -77,4 +77,4 @@
       <% end %>
     <% end %>
   <% end %>
-</my-graphical-lists>
+</section>
