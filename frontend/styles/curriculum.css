@@ -30,9 +30,11 @@ footer {
 
 h1, h2, h3, h4, h5, h6 {
   color: var(--heading-color);
+  line-height: normal;
 }
 h1 {
   font-size: var(--h1-font-size);
+  line-height: 1;
   margin-top: 0;
   margin-bottom: var(--medium-large-space);
 }
@@ -44,13 +46,13 @@ h2 {
 h3 {
   font-size: var(--h3-font-size);
   margin-top: var(--large-space);
+  border-bottom: var(--divider-thickness) dotted var(--divider-color);
 }
 h4 {
   font-size: var(--h4-font-size);
 }
 my-subheading {
   display: block;
-  margin-top: calc(-1 * var(--medium-large-space));
   font-size: var(--subheading-font-size);
 }
 
@@ -103,13 +105,13 @@ aside {
   user-select: none;
 }
 h2 .anchor {
-  margin-left: -2.7rem;
+  margin-left: -2.9rem;
 }
 h3 .anchor {
-  margin-left: -2.3rem;
+  margin-left: -2.8rem;
 }
 h4 .anchor {
-  margin-left: -1.7rem;
+  margin-left: -2.6rem;
 }
 .anchor:hover, h2:hover .anchor, h3:hover .anchor, h4:hover .anchor {
   opacity: 1;
@@ -126,25 +128,25 @@ h4 .anchor {
   opacity: 0;
   -webkit-user-select: none; /* Safari */
   user-select: none;
+  &:visited {
+    color: var(--heading-color);
+  }
 }
-.top:hover, h2:hover .top, h3:hover .top {
+.top:hover, h2:hover .top, h3:hover .top, h4:hover .top {
   opacity: 1;
 }
 
 my-graphical-lists {
-  * {
-    line-height: normal;
-  }
-
   ul {
     list-style-type: none;
-    margin: 0;
+    margin: 0 0 var(--large-space);
     padding: 0;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
     align-content: flex-start;
-    gap: var(--medium-space);
+    column-gap: var(--medium-space);
+    row-gap: var(--large-space);
   }
 
   li {
@@ -152,6 +154,7 @@ my-graphical-lists {
 
     figure {
       margin: 0;
+      line-height: normal;
 
       figcaption {
         margin-top: var(--small-space);
