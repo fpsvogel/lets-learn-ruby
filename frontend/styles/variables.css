@@ -4,8 +4,12 @@
   --emph-text-color: #c43323;
   --link-color: #2f2fc4;
   --link-underline-color: #7c7cea;
+  --hovered-link-color: #b37626;
+  --hovered-link-underline-color: #dfa962;
   --visited-link-color: #a22838;
   --visited-link-underline-color: salmon;
+  --visited-hovered-link-color: #ffdf80;
+  --visited-hovered-link-underline-color: #ffd194;
   --alt-link-color: #9f9fee;
   --alt-visited-link-color: #f79b90;
   --text-bg-color: #fffaf9;
