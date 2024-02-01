@@ -28,7 +28,7 @@ footer {
   margin-top: var(--large-space);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4 {
   color: var(--heading-color);
   line-height: normal;
 }
@@ -163,7 +163,6 @@ section.graphical-lists {
 
       & > a {
         font-weight: bold;
-        /* padding-top: var(--small-space); */
       }
 
       figcaption {
@@ -185,6 +184,9 @@ section.graphical-lists {
 
     .missing-image {
       font-size: var(--image-missing-icon-size);
+      text-decoration: none;
+      display: inline-block; /* So that `text-decoration: none` works. */
+      width: var(--figure-size);
       text-align: center;
       margin: 0;
       line-height: var(--figure-size);
