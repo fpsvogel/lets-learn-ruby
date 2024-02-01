@@ -1,6 +1,10 @@
 :root {
   --bg-color: #f5d7d4;
   --text-color: black;
+  --link-color: #2929bb;
+  --visited-link-color: #8b1a34;
+  --alt-link-color: #e9c879;
+  --alt-visited-link-color: #f79b90;
   --text-bg-color: #fffaf9;
   --emph-bg-color: #ffd8d4;
   --inverse-bg-color: #5d0c0c;

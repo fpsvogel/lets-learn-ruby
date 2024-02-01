@@ -54,6 +54,22 @@ subheading {
   font-size: var(--subheading-font-size);
 }
 
+a {
+  color: var(--link-color);
+
+  &:visited {
+    color: var(--visited-link-color);
+  }
+}
+
+footer a {
+  color: var(--alt-link-color);
+
+  &:visited {
+    color: var(--alt-visited-link-color);
+  }
+}
+
 aside {
   border: var(--border-width) solid var(--border-color);
   background-color: var(--emph-bg-color);
