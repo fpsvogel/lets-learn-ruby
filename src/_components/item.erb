@@ -2,6 +2,10 @@
   <figure>
     <% if @item.fetch(:image) %>
       <img src=<%= @item[:image] %>>
+    <% else %>
+      <p class="missing-image">
+        ❓
+      </p>
     <% end %>
     <figcaption>
       <a href=<%= @item.fetch(:url) %>>

@@ -163,9 +163,18 @@ my-graphical-lists {
     }
 
     img {
-      height: 15rem;
-      width: 15rem;
+      height: var(--figure-size);
+      width: var(--figure-size);
       object-fit: cover;
+      border: var(--alt-border-thickness) solid var(--alt-border-color);
+      border-radius: var(--border-radius);
+    }
+
+    .missing-image {
+      font-size: var(--image-missing-icon-size);
+      text-align: center;
+      margin: 0;
+      line-height: var(--figure-size);
       border: var(--alt-border-thickness) solid var(--alt-border-color);
       border-radius: var(--border-radius);
     }
