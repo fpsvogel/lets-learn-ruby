@@ -144,7 +144,7 @@ section.graphical-lists {
     flex-wrap: wrap;
     align-items: flex-start;
     align-content: flex-start;
-    column-gap: var(--medium-space);
+    column-gap: var(--medium-large-space);
     row-gap: var(--large-space);
   }
 
@@ -171,7 +171,7 @@ section.graphical-lists {
     img {
       height: var(--figure-size);
       width: var(--figure-size);
-      object-fit: cover;
+      object-fit: contain;
       border: var(--alt-border-thickness) solid var(--alt-border-color);
       border-radius: var(--border-radius);
     }
