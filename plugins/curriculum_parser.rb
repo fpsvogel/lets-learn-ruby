@@ -1,4 +1,4 @@
-class MarkdownCurriculum
+class CurriculumParser
   class ParsingError < StandardError; end
 
   DEFAULT_CONFIG = { ignore_incomplete?: true }
@@ -191,6 +191,8 @@ class MarkdownCurriculum
       .each { |item|
         item[:url] ||= item[:description].match(/\[.+?\]\((.+?)\)/)&.captures&.first
         item[:free] = item[:free].blank?
+
+        ItemFormatter.new(item).format_item_for_site!
       }
       # Reorder keys, for clearer console/JSON output.
       .map { |item|

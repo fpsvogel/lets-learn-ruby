@@ -5,7 +5,7 @@ class Builders::LoadCurriculum < SiteBuilder
     hook :site, :post_read do |site|
       generator do
         site.data.curriculum =
-          MarkdownCurriculum
+          CurriculumParser
             .new(local_file_contents || github_file_contents)
             .parse
       end

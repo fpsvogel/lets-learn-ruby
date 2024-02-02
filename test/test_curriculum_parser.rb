@@ -1,6 +1,6 @@
 require_relative "./helper"
 
-class TestMarkdownCurriculum < Minitest::Test
+class TestCurriculumParser < Minitest::Test
   def self.title = "My Ruby road map"
 
   def self.intro = "Hi, this is my road map.\n\nI hope you like it."
@@ -294,7 +294,7 @@ class TestMarkdownCurriculum < Minitest::Test
   # Test cases generated from the data above.
   @cases.each do |description, markdown, expected|
     define_method "test_#{description.tr(" ", "_")}" do
-      actual = MarkdownCurriculum.new(markdown).parse
+      actual = CurriculumParser.new(markdown).parse
       assert_equal expected, actual
     end
   end
