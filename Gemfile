@@ -23,9 +23,9 @@ gem "bridgetown", "~> 1.3.0"
 gem "bridgetown-seo-tag", "~> 6.0"
 gem "puma", "< 7"
 gem "kramdown"
+gem "nokogiri"
 
 group :test, optional: true do
-  gem "nokogiri"
   gem "minitest"
   gem "minitest-profile"
   gem "minitest-reporters"
