@@ -224,7 +224,10 @@ section.graphical-lists {
   }
 
   section.graphical-lists li a:hover .missing-image {
-    line-height: calc(var(--figure-size) - var(--small-space) * 1.7);
+    font-size: var(--hovered-image-missing-icon-size);
+    line-height: calc(var(--figure-size) - var(--small-space) * 2.5);
+    /* 2.5 is a magic number to *usually* get rid of a tiny layout shift,
+       but in any case there will typically not be any missing images. */
   }
 }
 
