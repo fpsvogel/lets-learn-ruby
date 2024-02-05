@@ -122,6 +122,7 @@ h4 .anchor {
 }
 
 .back-to-top {
+  visibility: hidden;
 	position: fixed;
 	height: var(--large-space);
   line-height: var(--large-space);
