@@ -9,6 +9,7 @@ main {
   margin: 0 auto;
   padding: var(--large-space);
   background-color: var(--text-bg-color);
+  box-shadow: 0 40px 25px 6px var(--shadow-color);
 
   p, li {
     font-size: var(--font-size);
@@ -26,6 +27,7 @@ footer {
   font-size: var(--font-size);
   padding: var(--large-space);
   margin-top: var(--large-space);
+  font-weight: bold;
 }
 
 h1, h2, h3, h4 {
@@ -119,20 +121,23 @@ h4 .anchor {
   margin-left: -2.6rem;
 }
 
-.top {
-  font-size: 110%;
-  color: var(--heading-color);
+.back-to-top {
+	position: fixed;
+	height: var(--large-space);
+  line-height: var(--large-space);
+	bottom: 40px;
+	left: 50%;
+  transform: translateX(-50%);
+  padding: 0 var(--medium-space);
+	background-color: var(--inverse-bg-color);
+  border: var(--alt-border-thickness) solid var(--border-color);
+	border-radius: var(--medium-large-space);
+	text-align: center;
+  justify-content: center;
   text-decoration: none;
-  position: absolute;
-  float: right;
-  padding: 0 0.5rem;
-  line-height: 1.2;
-  opacity: 0;
-  -webkit-user-select: none; /* Safari */
-  user-select: none;
-  &:visited {
-    color: var(--heading-color);
-  }
+	color: var(--inverse-text-color) !important;
+  font-size: var(--large-font-size);
+  font-weight: bold;
 }
 
 section.graphical-lists {
@@ -210,6 +215,10 @@ section.graphical-lists {
     }
   }
 
+  .back-to-top:hover {
+    background-color: var(--inverse-bg-color-lighter);
+  }
+
   footer a:hover {
     color: var(--visited-hovered-link-color);
     text-decoration-color: var(--visited-hovered-link-underline-color);
@@ -249,9 +258,6 @@ section.graphical-lists {
   }
   main {
     padding: var(--medium-large-space);
-  }
-  .top {
-    display: none;
   }
   .anchor {
     display: none;

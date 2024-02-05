@@ -40,7 +40,6 @@
         🔗
       </a>
       <%= section_name %>
-      <a class="top" tabindex="-1" href="#top">⌃</a>
     </h2>
 
     <% section_content.each do |subsection_name, subsection_content| %>
@@ -49,7 +48,6 @@
           🔗
         </a>
         <%= subsection_name %>
-        <a class="top" tabindex="-1" href="#top">⌃</a>
       </h3>
 
       <% if subsection_content.is_a?(Array) %>
@@ -65,7 +63,6 @@
               🔗
             </a>
             <%= subsubsection_name %>
-            <a class="top" tabindex="-1" href="#top">⌃</a>
           </h4>
 
           <ul>
@@ -78,3 +75,7 @@
     <% end %>
   <% end %>
 </section>
+
+<a href="#top" class="back-to-top">
+  Back to top
+</a>

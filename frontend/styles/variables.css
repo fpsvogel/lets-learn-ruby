@@ -2,6 +2,7 @@
   --bg-color: #f5d7d4;
   --text-color: black;
   --emph-text-color: #c43323;
+  --shadow-color: #815c051a;
   --link-color: #2f2fc4;
   --link-underline-color: #7c7cea;
   --hovered-link-color: #b37626;
@@ -15,12 +16,14 @@
   --text-bg-color: #fffaf9;
   --emph-bg-color: #ffd8d4;
   --inverse-bg-color: #5d0c0c;
+  --inverse-bg-color-lighter: #830e0e;
   --inverse-text-color: #fffaf9;
   --border-color: salmon;
   --alt-border-color: #770000;
   --divider-color: salmon;
   --heading-color: #770000;
   --font-size: 13pt;
+  --large-font-size: 16pt;
   --h1-font-size: 48pt;
   --h2-font-size: 38pt;
   --h3-font-size: 34pt;
@@ -45,4 +48,3 @@
   --mobile-h4-font-size: 24pt;
   --mobile-figure-size: 9rem;
 }
-
