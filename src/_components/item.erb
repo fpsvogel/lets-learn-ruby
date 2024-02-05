@@ -7,7 +7,10 @@
         <p class="missing-image">❓</p>
       <% end %>
 
-      <h5><%= @item.fetch(:name) %></h5>
+      <h5>
+        <%= "💲" unless @item.fetch(:free) %>
+        <%= @item.fetch(:name) %>
+      </h5>
     </a>
 
     <% if @item.fetch(:description) %>

@@ -126,7 +126,7 @@ h4 .anchor {
 	position: fixed;
 	height: var(--large-space);
   line-height: var(--large-space);
-	bottom: 40px;
+	bottom: var(--medium-large-space);
 	left: 50%;
   transform: translateX(-50%);
   padding: 0 var(--medium-space);
