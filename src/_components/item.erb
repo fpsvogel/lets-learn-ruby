@@ -2,7 +2,7 @@
   <figure>
     <a href=<%= @item.fetch(:url) %>>
       <% if @item.fetch(:image) %>
-        <img src=<%= @item[:image] %>>
+        <img loading="lazy" src=<%= @item[:image] %>>
       <% else %>
         <p class="missing-image">❓</p>
       <% end %>
