@@ -105,9 +105,10 @@ class CurriculumParser
       }
       .reject { |k, v| exclude_sections.include?(k.downcase) }
       .transform_values { _1&.strip&.presence }
+      .each { |heading, content_under|
+        raise "No content under \"#{heading}\"" if content_under.nil?
+      }
       .transform_values { |content_under|
-        next nil if content_under.nil?
-
         heading_strings_and_procs_under = heading_strings_and_procs
           .filter {
             heading_string = _1.first
