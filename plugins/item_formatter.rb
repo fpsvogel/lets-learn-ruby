@@ -11,7 +11,7 @@ class ItemFormatter
     capitalize_description_first_letter!
     ensure_description_final_period!
     transform_description_first_word_to_sentence_style!
-    fetch_github_og_image!
+    fetch_github_og_image! if ENV["BRIDGETOWN_ENV"] == "production"
   end
 
   private
