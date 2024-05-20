@@ -14,5 +14,5 @@ learn_ruby_repo:
 
 title: Let's Learn Ruby
 subtitle: a resource list
-callout: "If you like this list, please star it at [github.com/fpsvogel/learn-ruby](https://github.com/fpsvogel/learn-ruby). This page is generated automatically from the \"done\" and bullet-point items in that repo."
+callout: "If you like this list, please star it at [github.com/fpsvogel/learn-ruby](https://github.com/fpsvogel/learn-ruby). This page is generated automatically from the checked-off and bullet-point items in that repo."
 footer: "By [Felipe Vogel](https://github.com/fpsvogel). Built with [Bridgetown](https://www.bridgetownrb.com)."
