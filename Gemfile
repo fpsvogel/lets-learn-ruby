@@ -24,6 +24,7 @@ gem "bridgetown-seo-tag", "~> 6.0"
 gem "puma", "< 7"
 gem "kramdown"
 gem "nokogiri"
+gem "debug"
 
 group :test, optional: true do
   gem "minitest"
@@ -32,5 +33,4 @@ group :test, optional: true do
   gem "shoulda"
   gem "rails-dom-testing"
   gem "pretty-diffs"
-  gem "debug"
 end

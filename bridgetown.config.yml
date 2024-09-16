@@ -1,7 +1,7 @@
 # For technical reasons, this file is *NOT* reloaded automatically when you use
 # `bin/bridgetown start`. If you change this file, please restart the server process.
 
-url: "" # the base hostname & protocol for your site, e.g. https://example.com
+url: "https://letslearnruby.com" # the base hostname & protocol for your site, e.g. https://example.com
 
 permalink: pretty
 template_engine: erb

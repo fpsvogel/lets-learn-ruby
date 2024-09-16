@@ -14,7 +14,7 @@ class CurriculumParser
   # @return [Array<Hash>] nested item groups containing item hashes.
   #   See test_markdown_curriculum.rb for examples.
   def parse
-    markdown_string.gsub(/^<!--.+\n+/, "")
+    markdown_string.gsub(/^\s*<!--.+?-->+/m, "")
       .gsub(" #TODO", "")
       .then { extract_title_and_intro(_1) }
       .then { extract_content(_1) }
