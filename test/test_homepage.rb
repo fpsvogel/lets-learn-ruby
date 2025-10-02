@@ -1,4 +1,4 @@
-require_relative "./helper"
+require_relative "helper"
 
 class TestHomepage < Minitest::Test
   context "homepage" do

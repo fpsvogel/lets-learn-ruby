@@ -1,4 +1,4 @@
-require_relative "./helper"
+require_relative "helper"
 
 class TestCurriculumParser < Minitest::Test
   def self.title = "My Ruby road map"
@@ -20,15 +20,15 @@ class TestCurriculumParser < Minitest::Test
 
   example "blank file",
     markdown: "\n",
-    parsed: { title: nil, intro: nil, content: {} }
+    parsed: {title: nil, intro: nil, content: {}}
 
   example "title",
     markdown: "# #{title}\n",
-    parsed: { title:, intro: nil, content: {} }
+    parsed: {title:, intro: nil, content: {}}
 
   example "intro",
     markdown: "# #{title}\n#{intro}",
-    parsed: { title:, intro:, content: {} }
+    parsed: {title:, intro:, content: {}}
 
   example "empty sections",
     markdown: <<~MD,
@@ -43,7 +43,7 @@ class TestCurriculumParser < Minitest::Test
     parsed: {
       title:,
       intro: nil,
-      content: { "Preface" => nil, "Basics" => nil },
+      content: {"Preface" => nil, "Basics" => nil}
     }
 
   example "empty sections with minimal line breaks",
@@ -103,10 +103,10 @@ class TestCurriculumParser < Minitest::Test
       content: {
         "Advanced" => {
           "Quantum computing" => nil,
-          "The meaning of life" => nil,
+          "The meaning of life" => nil
         },
-        "Galaxy brain" => nil,
-      },
+        "Galaxy brain" => nil
+      }
     }
 
   example "empty subsections with minimal line breaks",
@@ -152,11 +152,11 @@ class TestCurriculumParser < Minitest::Test
         "Advanced" => {
           "Quantum computing" => {
             "Basics" => nil,
-            "Experimental tech" => nil,
+            "Experimental tech" => nil
           },
-          "The meaning of life" => nil,
-        },
-      },
+          "The meaning of life" => nil
+        }
+      }
     }
 
   example "empty subsubsections with minimal line breaks",
@@ -200,15 +200,15 @@ class TestCurriculumParser < Minitest::Test
             url: "https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby",
             description: "[Ruby track](https://www.theodinproject.com/paths/full-stack-ruby-on-rails/courses/ruby)",
             image: "https://example.com/top.png",
-            free: true,
+            free: true
           },
           {
             name: "GoRails - Ruby for Beginners",
             url: "https://gorails.com/series/ruby-for-beginners",
             description: "Great if you prefer videos.",
             image: "https://example.com/gorails.png",
-            free: true,
-          },
+            free: true
+          }
         ],
         "Intermediate" => [
           {
@@ -216,10 +216,10 @@ class TestCurriculumParser < Minitest::Test
             url: "http://somethingsomethingsomething.com",
             description: nil,
             image: "https://example.com/something.png",
-            free: false,
-          },
-        ],
-      },
+            free: false
+          }
+        ]
+      }
     }
 
   example "content under subsections",
@@ -249,11 +249,11 @@ class TestCurriculumParser < Minitest::Test
               url: "https://www.abcbootcamp.com/tracks/quantum",
               description: nil,
               image: "https://example.com/quantum.png",
-              free: true,
-            },
-          ],
-        },
-      },
+              free: true
+            }
+          ]
+        }
+      }
     }
 
   example "content under subsubsections",
@@ -283,12 +283,12 @@ class TestCurriculumParser < Minitest::Test
                 url: "https://www.abcbootcamp.com/tracks/quantum",
                 description: nil,
                 image: "https://example.com/quantum.png",
-                free: true,
-              },
-            ],
-          },
-        },
-      },
+                free: true
+              }
+            ]
+          }
+        }
+      }
     }
 
   # Test cases generated from the data above.

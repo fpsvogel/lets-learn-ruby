@@ -16,7 +16,7 @@ end
 Minitest::Reporters.use! [
   Minitest::Reporters::DefaultReporter.new(
     color: true
-  ),
+  )
 ]
 
 Minitest::Test.class_eval do

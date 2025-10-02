@@ -1,7 +1,7 @@
 class CurriculumParser
   class ParsingError < StandardError; end
 
-  DEFAULT_CONFIG = { ignore_incomplete?: true }
+  DEFAULT_CONFIG = {ignore_incomplete?: true}
 
   private attr_reader :markdown_string, :config
 
@@ -16,8 +16,8 @@ class CurriculumParser
   def parse
     markdown_string.gsub(/^\s*<!--.+?-->+/m, "")
       .gsub(" #TODO", "")
-      .then { extract_title_and_intro(_1) }
-      .then { extract_content(_1) }
+      .then { extract_title_and_intro(it) }
+      .then { extract_content(it) }
   end
 
   private
@@ -35,7 +35,7 @@ class CurriculumParser
         {
           title:,
           intro:,
-          content:,
+          content:
         }
       }
   end
@@ -47,7 +47,7 @@ class CurriculumParser
       title_intro_content_hash[:content] = {}
       return {
         **title_intro_content_hash,
-        content: {},
+        content: {}
       }
     end
 
@@ -55,10 +55,9 @@ class CurriculumParser
       ["## ", ->(heading) { heading.delete_prefix("## ") }],
       ["### ", ->(heading) { heading.delete_prefix("### ") }],
       ["- **", ->(heading) {
-          h4 = heading.match(/- \*\*(.+)\*\*/).captures.first
-          h4.delete_suffix(":").delete_suffix(".")
-        }
-      ],
+        h4 = heading.match(/- \*\*(.+)\*\*/).captures.first
+        h4.delete_suffix(":").delete_suffix(".")
+      }]
     ]
 
     content =
@@ -70,7 +69,7 @@ class CurriculumParser
 
     {
       **title_intro_content_hash,
-      content:,
+      content:
     }
   end
 
@@ -88,7 +87,7 @@ class CurriculumParser
 
     content
       .split(/\n(?=#{Regexp.escape(next_heading_string)})/)
-      .reject { !_1.start_with?(next_heading_string) }
+      .reject { !it.start_with?(next_heading_string) }
       .map { |heading_and_content|
         heading_and_content.strip.split("\n", 2)
       }
@@ -103,14 +102,14 @@ class CurriculumParser
         next_heading_proc.call(formatted_heading)
       }
       .reject { |k, v| exclude_sections.include?(k.downcase) }
-      .transform_values { _1&.strip&.presence }
+      .transform_values { it&.strip&.presence }
       .each { |heading, content_under|
         raise "No content under \"#{heading}\"" if content_under.nil?
       }
       .transform_values { |content_under|
         heading_strings_and_procs_under = heading_strings_and_procs
           .filter {
-            heading_string = _1.first
+            heading_string = it.first
             content_under.match?(/^#{Regexp.escape(heading_string)}/)
           }
 
@@ -182,10 +181,10 @@ class CurriculumParser
             \z}x
           )
           &.named_captures
-          &.transform_values { _1&.strip&.presence }
+          &.transform_values { it&.strip&.presence }
           &.transform_keys(&:to_sym) ||
-            (raise(ParsingError, "Could not parse: #{line}") \
-              if line.strip.start_with?("- "))
+          (raise(ParsingError, "Could not parse: #{line}") \
+            if line.strip.start_with?("- "))
       }
       .compact
       .each { |item|
