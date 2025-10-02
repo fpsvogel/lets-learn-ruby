@@ -19,9 +19,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # If you need to upgrade/switch Bridgetown versions, change the line below
 # and then run `bundle update bridgetown`
-gem "bridgetown", "~> 1.3.0"
-gem "bridgetown-seo-tag", "~> 6.0"
-gem "puma", "< 7"
+gem "bridgetown", "~> 2.0"
+gem "bridgetown-seo-tag"
+gem "puma"
 gem "kramdown"
 gem "nokogiri"
 gem "debug"

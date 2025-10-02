@@ -7,7 +7,7 @@ class CurriculumParser
 
   def initialize(markdown_string, custom_config: {})
     @markdown_string = markdown_string
-    @config = custom_config.with_defaults(DEFAULT_CONFIG)
+    @config = DEFAULT_CONFIG.merge(custom_config)
   end
 
   # Parses the Markdown curriculum into groups of item hashes.
