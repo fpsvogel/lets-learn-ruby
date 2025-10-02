@@ -18,7 +18,7 @@ class ItemFormatter
 
   FIRST_WORD_SENTENCE_STYLE_REPLACEMENTS = {
     "Is" => "It's",
-    "Which" => "It",
+    "Which" => "It"
   }.freeze
 
   def capitalize_description_first_letter!
@@ -50,12 +50,12 @@ class ItemFormatter
       og_image = nil
       tries = 0
       loop do
-        repo_doc = Nokogiri::HTML(Net::HTTP.get(URI(item[:url])))
+        repo_doc = Nokogiri::HTML(Net::HTTP.get(URI(item[:url].delete_suffix(".git"))))
         og_image = repo_doc
           .css('meta[property="og:image"]')
           .first
           .attribute_nodes
-          .find { _1.name == "content" }
+          .find { it.name == "content" }
           .value
 
         break if og_image || tries >= 5
