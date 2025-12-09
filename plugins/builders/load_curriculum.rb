@@ -26,6 +26,11 @@ class Builders::LoadCurriculum < SiteBuilder
   # The contents of github.com/fpsvogel/learn-ruby/README.md
   # @return [String]
   def github_file_contents
+    # To avoid SSL error in development
+    if Bridgetown.env.development?
+      return File.read(File.join("dev", "curriculum.md"))
+    end
+
     Net::HTTP
       .get(URI(config.learn_ruby_repo.github_url))
       .force_encoding("UTF-8")
