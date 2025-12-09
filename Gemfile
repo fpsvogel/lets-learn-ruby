@@ -1,5 +1,4 @@
 source "https://rubygems.org"
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ####
 # Welcome to your project's Gemfile, used by Rubygems & Bundler.
@@ -19,8 +18,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # If you need to upgrade/switch Bridgetown versions, change the line below
 # and then run `bundle update bridgetown`
-gem "bridgetown", "~>2", git: "https://github.com/bridgetownrb/bridgetown.git"
-gem "bridgetown-seo-tag"
+source "https://gems.bridgetownrb.com" do
+  gem "bridgetown", "~> 2.1.0.beta1"
+  gem "bridgetown-seo-tag"
+end
 gem "puma"
 gem "kramdown"
 gem "nokogiri"
@@ -28,9 +29,7 @@ gem "debug"
 
 group :test, optional: true do
   gem "minitest"
-  gem "minitest-profile"
   gem "minitest-reporters"
-  gem "shoulda"
   gem "rails-dom-testing"
   gem "pretty-diffs"
 end

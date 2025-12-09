@@ -1,10 +1,9 @@
 require "nokogiri"
 require "minitest/autorun"
 require "minitest/reporters"
-require "minitest/profile"
-require "shoulda"
 require "rails-dom-testing"
 require "pretty_diffs"
+require "bridgetown"
 
 module Minitest
   class Test

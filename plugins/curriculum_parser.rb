@@ -29,8 +29,9 @@ class CurriculumParser
       .split(/\n(?=## )/, 2)
       .then { |title_and_intro, content|
         title, intro = title_and_intro.strip.split("\n", 2)
-        title = title&.delete_prefix("# ")&.strip&.presence
-        intro = intro&.strip&.presence
+        title = title&.delete_prefix("# ")&.strip
+        intro = intro&.strip
+        intro = nil if intro && intro.empty?
 
         {
           title:,
@@ -102,7 +103,11 @@ class CurriculumParser
         next_heading_proc.call(formatted_heading)
       }
       .reject { |k, v| exclude_sections.include?(k.downcase) }
-      .transform_values { it&.strip&.presence }
+      .transform_values {
+        value = it&.strip
+        value = nil if value && value.empty?
+        value
+      }
       .each { |heading, content_under|
         raise "No content under \"#{heading}\"" if content_under.nil?
       }
@@ -181,7 +186,11 @@ class CurriculumParser
             \z}x
           )
           &.named_captures
-          &.transform_values { it&.strip&.presence }
+          &.transform_values {
+            value = it&.strip
+            value = nil if value && value.empty?
+            value
+          }
           &.transform_keys(&:to_sym) ||
           (raise(ParsingError, "Could not parse: #{line}") \
             if line.strip.start_with?("- "))
@@ -189,7 +198,7 @@ class CurriculumParser
       .compact
       .each { |item|
         item[:url] ||= item[:description].match(/\[.+?\]\((.+?)\)/)&.captures&.first
-        item[:free] = item[:free].blank?
+        item[:free] = !item[:free] || item[:free].empty?
 
         ItemFormatter.new(item).format_item_for_site!
       }
