@@ -19,7 +19,7 @@ source "https://rubygems.org"
 # If you need to upgrade/switch Bridgetown versions, change the line below
 # and then run `bundle update bridgetown`
 source "https://gems.bridgetownrb.com" do
-  gem "bridgetown", "~> 2.1.0.beta1"
+  gem "bridgetown", "~> 2"
   gem "bridgetown-seo-tag"
 end
 gem "puma"
