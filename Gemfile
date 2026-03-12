@@ -18,11 +18,17 @@ source "https://rubygems.org"
 
 # If you need to upgrade/switch Bridgetown versions, change the line below
 # and then run `bundle update bridgetown`
-source "https://gems.bridgetownrb.com" do
-  gem "bridgetown", "~> 2"
-  gem "bridgetown-seo-tag"
-end
-gem "puma"
+
+gem "bridgetown"
+gem "bridgetown-core", github: "ayushn21/bridgetown", branch: "falcon"
+gem "falcon"
+gem "bridgetown-seo-tag"
+# source "https://gems.bridgetownrb.com" do
+#   gem "bridgetown", "~> 2"
+#   gem "bridgetown-seo-tag"
+# end
+# gem "puma"
+
 gem "kramdown"
 gem "nokogiri"
 gem "debug"
