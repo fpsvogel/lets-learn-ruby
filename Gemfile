@@ -1,37 +1,13 @@
 source "https://rubygems.org"
 
-####
-# Welcome to your project's Gemfile, used by Rubygems & Bundler.
-#
-# To install a plugin, run:
-#
-#   bundle add new-plugin-name -g bridgetown_plugins
-#
-# This will ensure the plugin is added to the correct Bundler group.
-#
-# When you run Bridgetown commands, we recommend using a binstub like so:
-#
-#   bin/bridgetown start (or console, etc.)
-#
-# This will help ensure the proper Bridgetown version is running.
-####
-
-# If you need to upgrade/switch Bridgetown versions, change the line below
-# and then run `bundle update bridgetown`
-
-gem "bridgetown"
-gem "bridgetown-core", github: "ayushn21/bridgetown", branch: "falcon"
+gem "bridgetown", "~> 2", github: "bridgetownrb/bridgetown"
 gem "falcon"
-gem "bridgetown-seo-tag"
-# source "https://gems.bridgetownrb.com" do
-#   gem "bridgetown", "~> 2"
-#   gem "bridgetown-seo-tag"
-# end
-# gem "puma"
+source "https://gems.bridgetownrb.com" do
+  gem "bridgetown-seo-tag"
+end
 
 gem "kramdown"
 gem "nokogiri"
-gem "debug"
 
 group :test, optional: true do
   gem "minitest"
